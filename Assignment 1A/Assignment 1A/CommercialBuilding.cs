@@ -13,20 +13,21 @@ namespace Assignment_1A
     class CommercialBuilding : Building
     {
         public CommercialType CommercialType { get; set; }
+        public override string BuildingType { get; set; }
 
         public CommercialBuilding(int id, Address address, LegalType legalType, CommercialType commercialType) : base(id, address, legalType)
         {
             this.CommercialType = commercialType;
+            BuildingType = commercialType.ToString();
+        }
+
+        public CommercialBuilding()
+        {
         }
 
         public override String GetBuildingCategory()
         {
             return BuildingCategory.Commercial.ToString();
-        }
-
-        public override String GetBuildingType()
-        {
-            return CommercialType.ToString();
         }
     }
 }

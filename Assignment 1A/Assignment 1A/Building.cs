@@ -16,7 +16,7 @@ namespace Assignment_1A
         public Address Address { get; set; }
         public LegalType LegalType { get; set; }
         public abstract String GetBuildingCategory();
-        public abstract String GetBuildingType();
+        public abstract String BuildingType { get; set; }
 
         /// <summary>
         /// Constructor that takes in parameters to declare instance variables
@@ -30,6 +30,10 @@ namespace Assignment_1A
             this.Id = id;
             this.Address = address;
             this.LegalType = legalType;
+        }
+
+        public Building()
+        {
         }
 
         public object Clone()

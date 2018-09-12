@@ -18,7 +18,7 @@ namespace Assignment_1A
         Countries Country { get; set; }
         String City { get; set; }
         String Street { get; set; }
-        int ZipCode { get; set; }
+        String ZipCode { get; set; }
 
         /// <summary>
         /// Constructor that takes in parameters to declare instance variables
@@ -27,7 +27,7 @@ namespace Assignment_1A
         /// <param name="city"></param>
         /// <param name="street"></param>
         /// <param name="zipCode"></param>
-        public Address(Countries country, String city, String street, int zipCode)
+        public Address(Countries country, String city, String street, String zipCode)
         {
             this.Country = country;
             this.City = city;
@@ -41,7 +41,7 @@ namespace Assignment_1A
         /// <returns></returns>
         public override String ToString()
         {
-            return Country +  ", " + City + ", " + Street + ", " + ZipCode;
+            return Country.ToString().Replace("_", " ") +  ", " + City + ", " + Street + ", " + ZipCode;
         }
     }
 }

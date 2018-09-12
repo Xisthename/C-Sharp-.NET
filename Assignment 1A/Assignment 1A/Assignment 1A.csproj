@@ -50,6 +50,7 @@
     <Compile Include="Building.cs" />
     <Compile Include="BuildingManager.cs" />
     <Compile Include="CommercialBuilding.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Homes for Sale.cs">
       <SubType>Form</SubType>
