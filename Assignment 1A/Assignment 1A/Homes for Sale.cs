@@ -19,6 +19,7 @@ namespace Assignment_1A
         private Building tempBuilding;
         private Controller controller;
         private BuildingManager buildingManager;
+        private Picture picture;
         private int IsCommercialBuilding;
 
         public HomesForSale()
@@ -31,11 +32,6 @@ namespace Assignment_1A
             controller = new Controller(table);
             buildingManager = new BuildingManager(controller);
             controller.SetbuildingManager(buildingManager);
-
-            tempBuilding = new ResidentialBuilding(1, new Address(Countries.Russia, "Moskva", "Cold street", "63256"), LegalType.Rental, ResidentialType.Villa);
-            buildingManager.AddBuilding(tempBuilding);
-            tempBuilding = new CommercialBuilding(2, new Address(Countries.Thailand, "Bankog", "Worm street", "34322"), LegalType.Ownership, CommercialType.Shop);
-            buildingManager.AddBuilding(tempBuilding);
             InitGUI();
         }
 
@@ -97,8 +93,6 @@ namespace Assignment_1A
 
         private void ReadInputAndSetData()
         {
-            tempBuilding = null;
-
             if (IsCommercialBuilding == 1)
             {
                 tempBuilding = new CommercialBuilding();
@@ -110,9 +104,13 @@ namespace Assignment_1A
                 tempBuilding.BuildingType = ((ResidentialType) typeComboBox.SelectedIndex).ToString();
             }
             tempBuilding.Id = (int) idNumericUpDown.Value;
-            tempBuilding.Address = new Address((Countries) countriesComboBox.SelectedIndex, cityTextBox.Text, streetTextBox.Text, zipCodeTextBox.Text);
+            tempBuilding.Address.Country = (Countries) countriesComboBox.SelectedIndex;
+            tempBuilding.Address.City = cityTextBox.Text;
+            tempBuilding.Address.Street = streetTextBox.Text;
+            tempBuilding.Address.ZipCode = zipCodeTextBox.Text;
             tempBuilding.LegalType = (LegalType) legalComboBox.SelectedIndex;
-            MessageBox.Show(tempBuilding.Address.ToString());
+            tempBuilding.Image = picture.Image;
+            picture.Image = null;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -137,6 +135,33 @@ namespace Assignment_1A
             {
                 e.Handled = true;
             }
+        }
+
+        private void picturebutton_Click(object sender, EventArgs e)
+        {
+            SelectImage();
+        }
+
+        private void SelectImage()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = @"C:\";
+            openFileDialog.Title = "Browse Text Files";
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+            openFileDialog.DefaultExt = "txt";
+            openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog.FilterIndex = 2;
+            openFileDialog.RestoreDirectory = false;
+            openFileDialog.ReadOnlyChecked = true;
+            openFileDialog.ShowReadOnly = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show(openFileDialog.FileName);
+                picture = new Picture(openFileDialog.FileName);
+            }
+            pictureBox1.Image = picture.Image;
         }
     }
 }

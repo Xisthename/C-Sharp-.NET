@@ -31,6 +31,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomesForSale));
             this.table = new System.Windows.Forms.DataGridView();
+            this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnCountry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnStreet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnZipCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLegalType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.removeButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -55,12 +64,9 @@
             this.CountryLabel = new System.Windows.Forms.Label();
             this.idBox = new System.Windows.Forms.GroupBox();
             this.idLabel = new System.Windows.Forms.Label();
-            this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLegalType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.picturebutton = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             this.buildningHeaderBox.SuspendLayout();
@@ -69,6 +75,7 @@
             this.categoryBox.SuspendLayout();
             this.AddressBox.SuspendLayout();
             this.idBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // table
@@ -89,7 +96,10 @@
             this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnID,
-            this.columnAddress,
+            this.columnCountry,
+            this.ColumnCity,
+            this.ColumnStreet,
+            this.ColumnZipCode,
             this.ColumnCategory,
             this.ColumnType,
             this.ColumnLegalType,
@@ -102,12 +112,102 @@
             this.table.RowHeadersWidth = 20;
             this.table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.table.RowTemplate.Height = 64;
-            this.table.Size = new System.Drawing.Size(1042, 716);
+            this.table.Size = new System.Drawing.Size(1349, 716);
             this.table.TabIndex = 17;
+            // 
+            // ColumnID
+            // 
+            this.ColumnID.FillWeight = 35F;
+            this.ColumnID.Frozen = true;
+            this.ColumnID.HeaderText = "ID";
+            this.ColumnID.MaxInputLength = 10;
+            this.ColumnID.Name = "ColumnID";
+            this.ColumnID.ReadOnly = true;
+            this.ColumnID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnID.Width = 30;
+            // 
+            // columnCountry
+            // 
+            this.columnCountry.FillWeight = 35F;
+            this.columnCountry.Frozen = true;
+            this.columnCountry.HeaderText = "Country";
+            this.columnCountry.MaxInputLength = 200;
+            this.columnCountry.Name = "columnCountry";
+            this.columnCountry.ReadOnly = true;
+            this.columnCountry.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.columnCountry.Width = 200;
+            // 
+            // ColumnCity
+            // 
+            this.ColumnCity.Frozen = true;
+            this.ColumnCity.HeaderText = "City";
+            this.ColumnCity.Name = "ColumnCity";
+            this.ColumnCity.ReadOnly = true;
+            this.ColumnCity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnCity.Width = 200;
+            // 
+            // ColumnStreet
+            // 
+            this.ColumnStreet.Frozen = true;
+            this.ColumnStreet.HeaderText = "Street";
+            this.ColumnStreet.Name = "ColumnStreet";
+            this.ColumnStreet.ReadOnly = true;
+            this.ColumnStreet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnStreet.Width = 200;
+            // 
+            // ColumnZipCode
+            // 
+            this.ColumnZipCode.Frozen = true;
+            this.ColumnZipCode.HeaderText = "Zip Code";
+            this.ColumnZipCode.Name = "ColumnZipCode";
+            this.ColumnZipCode.ReadOnly = true;
+            this.ColumnZipCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnZipCode.Width = 60;
+            // 
+            // ColumnCategory
+            // 
+            this.ColumnCategory.FillWeight = 35F;
+            this.ColumnCategory.Frozen = true;
+            this.ColumnCategory.HeaderText = "Building Category";
+            this.ColumnCategory.Name = "ColumnCategory";
+            this.ColumnCategory.ReadOnly = true;
+            this.ColumnCategory.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnCategory.Width = 95;
+            // 
+            // ColumnType
+            // 
+            this.ColumnType.FillWeight = 35F;
+            this.ColumnType.Frozen = true;
+            this.ColumnType.HeaderText = "Building Type";
+            this.ColumnType.Name = "ColumnType";
+            this.ColumnType.ReadOnly = true;
+            this.ColumnType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnType.Width = 80;
+            // 
+            // ColumnLegalType
+            // 
+            this.ColumnLegalType.FillWeight = 35F;
+            this.ColumnLegalType.Frozen = true;
+            this.ColumnLegalType.HeaderText = "Legal Form";
+            this.ColumnLegalType.Name = "ColumnLegalType";
+            this.ColumnLegalType.ReadOnly = true;
+            this.ColumnLegalType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnLegalType.Width = 80;
+            // 
+            // ColumnImage
+            // 
+            this.ColumnImage.FillWeight = 64F;
+            this.ColumnImage.Frozen = true;
+            this.ColumnImage.HeaderText = "Image";
+            this.ColumnImage.Name = "ColumnImage";
+            this.ColumnImage.ReadOnly = true;
+            this.ColumnImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnImage.Width = 64;
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(1066, 539);
+            this.removeButton.Location = new System.Drawing.Point(1379, 685);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(343, 45);
             this.removeButton.TabIndex = 18;
@@ -117,7 +217,7 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(6, 467);
+            this.addButton.Location = new System.Drawing.Point(6, 518);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(343, 45);
             this.addButton.TabIndex = 19;
@@ -134,15 +234,17 @@
             // 
             // buildningHeaderBox
             // 
+            this.buildningHeaderBox.Controls.Add(this.pictureBox1);
+            this.buildningHeaderBox.Controls.Add(this.picturebutton);
             this.buildningHeaderBox.Controls.Add(this.legalBox);
             this.buildningHeaderBox.Controls.Add(this.addButton);
             this.buildningHeaderBox.Controls.Add(this.typeBox);
             this.buildningHeaderBox.Controls.Add(this.categoryBox);
             this.buildningHeaderBox.Controls.Add(this.AddressBox);
             this.buildningHeaderBox.Controls.Add(this.idBox);
-            this.buildningHeaderBox.Location = new System.Drawing.Point(1060, 14);
+            this.buildningHeaderBox.Location = new System.Drawing.Point(1367, 14);
             this.buildningHeaderBox.Name = "buildningHeaderBox";
-            this.buildningHeaderBox.Size = new System.Drawing.Size(363, 519);
+            this.buildningHeaderBox.Size = new System.Drawing.Size(363, 581);
             this.buildningHeaderBox.TabIndex = 24;
             this.buildningHeaderBox.TabStop = false;
             this.buildningHeaderBox.Text = "Add Buildning";
@@ -273,6 +375,7 @@
             // streetTextBox
             // 
             this.streetTextBox.Location = new System.Drawing.Point(93, 91);
+            this.streetTextBox.MaxLength = 30;
             this.streetTextBox.Name = "streetTextBox";
             this.streetTextBox.Size = new System.Drawing.Size(250, 22);
             this.streetTextBox.TabIndex = 26;
@@ -289,6 +392,7 @@
             // cityTextBox
             // 
             this.cityTextBox.Location = new System.Drawing.Point(93, 63);
+            this.cityTextBox.MaxLength = 30;
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(250, 22);
             this.cityTextBox.TabIndex = 24;
@@ -340,79 +444,40 @@
             this.idLabel.TabIndex = 21;
             this.idLabel.Text = "ID:";
             // 
-            // ColumnID
+            // picturebutton
             // 
-            this.ColumnID.FillWeight = 35F;
-            this.ColumnID.Frozen = true;
-            this.ColumnID.HeaderText = "ID";
-            this.ColumnID.MaxInputLength = 10;
-            this.ColumnID.Name = "ColumnID";
-            this.ColumnID.ReadOnly = true;
-            this.ColumnID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnID.Width = 30;
+            this.picturebutton.Location = new System.Drawing.Point(6, 467);
+            this.picturebutton.Name = "picturebutton";
+            this.picturebutton.Size = new System.Drawing.Size(343, 45);
+            this.picturebutton.TabIndex = 32;
+            this.picturebutton.Text = "Select Image";
+            this.picturebutton.UseVisualStyleBackColor = true;
+            this.picturebutton.Click += new System.EventHandler(this.picturebutton_Click);
             // 
-            // columnAddress
+            // openFileDialog
             // 
-            this.columnAddress.FillWeight = 35F;
-            this.columnAddress.Frozen = true;
-            this.columnAddress.HeaderText = "Address";
-            this.columnAddress.MaxInputLength = 200;
-            this.columnAddress.Name = "columnAddress";
-            this.columnAddress.ReadOnly = true;
-            this.columnAddress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.columnAddress.Width = 300;
+            this.openFileDialog.FileName = "openFileDialog";
             // 
-            // ColumnCategory
+            // pictureBox1
             // 
-            this.ColumnCategory.FillWeight = 35F;
-            this.ColumnCategory.Frozen = true;
-            this.ColumnCategory.HeaderText = "Building Category";
-            this.ColumnCategory.Name = "ColumnCategory";
-            this.ColumnCategory.ReadOnly = true;
-            this.ColumnCategory.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnCategory.Width = 130;
-            // 
-            // ColumnType
-            // 
-            this.ColumnType.FillWeight = 35F;
-            this.ColumnType.Frozen = true;
-            this.ColumnType.HeaderText = "Building Type";
-            this.ColumnType.Name = "ColumnType";
-            this.ColumnType.ReadOnly = true;
-            this.ColumnType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnType.Width = 130;
-            // 
-            // ColumnLegalType
-            // 
-            this.ColumnLegalType.FillWeight = 35F;
-            this.ColumnLegalType.Frozen = true;
-            this.ColumnLegalType.HeaderText = "Legal Form";
-            this.ColumnLegalType.Name = "ColumnLegalType";
-            this.ColumnLegalType.ReadOnly = true;
-            this.ColumnLegalType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnLegalType.Width = 130;
-            // 
-            // ColumnImage
-            // 
-            this.ColumnImage.FillWeight = 64F;
-            this.ColumnImage.Frozen = true;
-            this.ColumnImage.HeaderText = "Image";
-            this.ColumnImage.Name = "ColumnImage";
-            this.ColumnImage.ReadOnly = true;
-            this.ColumnImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnImage.Width = 64;
+            this.pictureBox1.Location = new System.Drawing.Point(174, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(136, 83);
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
             // 
             // HomesForSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1538, 945);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1755, 945);
             this.Controls.Add(this.buildningHeaderBox);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.table);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomesForSale";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Homes for Sale";
             this.Load += new System.EventHandler(this.HomesForSale_Load);
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
@@ -428,6 +493,7 @@
             this.AddressBox.PerformLayout();
             this.idBox.ResumeLayout(false);
             this.idBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -459,11 +525,17 @@
         private System.Windows.Forms.ComboBox legalComboBox;
         private System.Windows.Forms.Label legalLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnCountry;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStreet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnZipCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLegalType;
         private System.Windows.Forms.DataGridViewImageColumn ColumnImage;
+        private System.Windows.Forms.Button picturebutton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

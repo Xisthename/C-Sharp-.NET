@@ -15,16 +15,6 @@ namespace Assignment_1A
         public ResidentialType ResidentialType { get; set; }
         public override string BuildingType { get; set; }
 
-        public ResidentialBuilding(int id, Address address, LegalType legalType, ResidentialType residentialType) : base(id, address, legalType)
-        {
-            this.ResidentialType = residentialType;
-            BuildingType = residentialType.ToString();
-        }
-
-        public ResidentialBuilding()
-        {
-        }
-
         public override String GetBuildingCategory()
         {
             return BuildingCategory.Residential.ToString();

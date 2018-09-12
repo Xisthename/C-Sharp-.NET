@@ -13,35 +13,20 @@ namespace Assignment_1A
     class Address
     {
         /// <summary>
-        /// Delecering necessary instance variables
+        /// Delecering necessary variables
         /// </summary>
-        Countries Country { get; set; }
-        String City { get; set; }
-        String Street { get; set; }
-        String ZipCode { get; set; }
+        public Countries Country { get; set; }
+        public String City { get; set; }
+        public String Street { get; set; }
+        public String ZipCode { get; set; }
 
         /// <summary>
-        /// Constructor that takes in parameters to declare instance variables
-        /// </summary>
-        /// <param name="country"></param>
-        /// <param name="city"></param>
-        /// <param name="street"></param>
-        /// <param name="zipCode"></param>
-        public Address(Countries country, String city, String street, String zipCode)
-        {
-            this.Country = country;
-            this.City = city;
-            this.Street = street;
-            this.ZipCode = zipCode;
-        }
-
-        /// <summary>
-        /// Returns all info about an address to a string
+        /// Returns the country to a string and fixes spaces
         /// </summary>
         /// <returns></returns>
-        public override String ToString()
+        public String GetGetCountry()
         {
-            return Country.ToString().Replace("_", " ") +  ", " + City + ", " + Street + ", " + ZipCode;
+            return Country.ToString().Replace("_", " ");
         }
     }
 }

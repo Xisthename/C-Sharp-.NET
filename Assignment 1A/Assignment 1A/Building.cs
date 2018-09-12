@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,30 +13,28 @@ namespace Assignment_1A
     /// </summary>
     abstract class Building : ICloneable
     {
+        /// <summary>
+        /// Delecering necessary variables
+        /// </summary>
         public int Id { get; set; }
         public Address Address { get; set; }
         public LegalType LegalType { get; set; }
+        public Image Image { get; set; }
         public abstract String GetBuildingCategory();
         public abstract String BuildingType { get; set; }
 
         /// <summary>
-        /// Constructor that takes in parameters to declare instance variables
+        /// Constructor that creates a new empty Address object
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="address"></param>
-        /// <param name=""></param>
-        /// <param name="legalType"></param>
-        public Building(int id, Address address, LegalType legalType)
-        {
-            this.Id = id;
-            this.Address = address;
-            this.LegalType = legalType;
-        }
-
         public Building()
         {
+            Address = new Address();
         }
 
+        /// <summary>
+        /// Used to clone the obect
+        /// </summary>
+        /// <returns></returns>
         public object Clone()
         {
             return this.MemberwiseClone();
