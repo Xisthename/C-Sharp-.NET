@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment_1A
+namespace Data_Access_Layer__DAL_
 {
     /// <summary>
     /// Daniel Petersén
     /// 2018-09-09
     /// </summary>
-    class Address
+    public abstract class Address
     {
         /// <summary>
         /// Delecering necessary variables
@@ -24,7 +24,7 @@ namespace Assignment_1A
         /// Returns the country to a string and fixes spaces
         /// </summary>
         /// <returns></returns>
-        public String GetGetCountry()
+        public String GetCountry()
         {
             return Country.ToString().Replace("_", " ");
         }

@@ -7,15 +7,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace Assignment_1A
+namespace Data_Access_Layer__DAL_
 {
     /// <summary>
     /// Daniel Petersén
     /// 2018-09-12
     /// </summary>
-    class Picture
+    public class Picture
     {
         /// <summary>
         /// Delecering necessary variable

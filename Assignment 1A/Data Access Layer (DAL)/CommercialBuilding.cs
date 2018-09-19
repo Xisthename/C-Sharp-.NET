@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment_1A
+namespace Data_Access_Layer__DAL_
 {
     /// <summary>
     /// Daniel Petersén
     /// 2018-09-09
     /// </summary>
-    class ResidentialBuilding : Building
+    public class CommercialBuilding : Building
     {
-        public ResidentialType ResidentialType { get; set; }
+        public CommercialType CommercialType { get; set; }
         public override string BuildingType { get; set; }
 
         public override String GetBuildingCategory()
         {
-            return BuildingCategory.Residential.ToString();
+            return BuildingCategory.Commercial.ToString();
         }
     }
 }

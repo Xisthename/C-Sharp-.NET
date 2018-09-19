@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 /// Daniel Petersén
 /// 2018-09-09
 /// </summary>
-namespace Assignment_1A
+namespace Data_Access_Layer__DAL_
 {
     /// <summary>
     /// Building Category

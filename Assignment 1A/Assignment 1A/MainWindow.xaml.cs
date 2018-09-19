@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Assignment_1A
+namespace Assignment_1
 {
     /// <summary>
     /// Daniel Petersén

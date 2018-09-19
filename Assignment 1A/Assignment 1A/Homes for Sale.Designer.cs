@@ -1,4 +1,4 @@
-﻿namespace Assignment_1A
+﻿namespace Assignment_1
 {
     partial class HomesForSale
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomesForSale));
             this.table = new System.Windows.Forms.DataGridView();
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +44,8 @@
             this.addButton = new System.Windows.Forms.Button();
             this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.buildningHeaderBox = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picturebutton = new System.Windows.Forms.Button();
             this.legalBox = new System.Windows.Forms.GroupBox();
             this.legalComboBox = new System.Windows.Forms.ComboBox();
             this.legalLabel = new System.Windows.Forms.Label();
@@ -64,18 +66,15 @@
             this.CountryLabel = new System.Windows.Forms.Label();
             this.idBox = new System.Windows.Forms.GroupBox();
             this.idLabel = new System.Windows.Forms.Label();
-            this.picturebutton = new System.Windows.Forms.Button();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             this.buildningHeaderBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.legalBox.SuspendLayout();
             this.typeBox.SuspendLayout();
             this.categoryBox.SuspendLayout();
             this.AddressBox.SuspendLayout();
             this.idBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // table
@@ -85,14 +84,14 @@
             this.table.AllowUserToResizeColumns = false;
             this.table.AllowUserToResizeRows = false;
             this.table.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.table.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.table.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnID,
@@ -248,6 +247,24 @@
             this.buildningHeaderBox.TabIndex = 24;
             this.buildningHeaderBox.TabStop = false;
             this.buildningHeaderBox.Text = "Add Buildning";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(174, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(136, 83);
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
+            // 
+            // picturebutton
+            // 
+            this.picturebutton.Location = new System.Drawing.Point(6, 467);
+            this.picturebutton.Name = "picturebutton";
+            this.picturebutton.Size = new System.Drawing.Size(343, 45);
+            this.picturebutton.TabIndex = 32;
+            this.picturebutton.Text = "Select Image";
+            this.picturebutton.UseVisualStyleBackColor = true;
+            this.picturebutton.Click += new System.EventHandler(this.picturebutton_Click);
             // 
             // legalBox
             // 
@@ -444,28 +461,6 @@
             this.idLabel.TabIndex = 21;
             this.idLabel.Text = "ID:";
             // 
-            // picturebutton
-            // 
-            this.picturebutton.Location = new System.Drawing.Point(6, 467);
-            this.picturebutton.Name = "picturebutton";
-            this.picturebutton.Size = new System.Drawing.Size(343, 45);
-            this.picturebutton.TabIndex = 32;
-            this.picturebutton.Text = "Select Image";
-            this.picturebutton.UseVisualStyleBackColor = true;
-            this.picturebutton.Click += new System.EventHandler(this.picturebutton_Click);
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(174, 21);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(136, 83);
-            this.pictureBox1.TabIndex = 25;
-            this.pictureBox1.TabStop = false;
-            // 
             // HomesForSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -483,6 +478,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             this.buildningHeaderBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.legalBox.ResumeLayout(false);
             this.legalBox.PerformLayout();
             this.typeBox.ResumeLayout(false);
@@ -493,7 +489,6 @@
             this.AddressBox.PerformLayout();
             this.idBox.ResumeLayout(false);
             this.idBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -534,7 +529,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLegalType;
         private System.Windows.Forms.DataGridViewImageColumn ColumnImage;
         private System.Windows.Forms.Button picturebutton;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

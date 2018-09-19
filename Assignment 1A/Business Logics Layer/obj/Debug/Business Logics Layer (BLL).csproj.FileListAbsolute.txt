@@ -1,0 +1,9 @@
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\bin\Debug\Business Logics Layer.dll
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\bin\Debug\Business Logics Layer.pdb
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\bin\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\bin\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csprojAssemblyReference.cache
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csproj.CopyComplete
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\obj\Debug\Business Logics Layer.dll
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\obj\Debug\Business Logics Layer.pdb

@@ -4,24 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment_1A
+namespace Data_Access_Layer__DAL_
 {
     /// <summary>
     /// Daniel Petersén
     /// 2018-09-10
     /// </summary>
-    class BuildingManager
+    public class BuildingManager
     {
         /// <summary>
         /// Delecering necessary instance variables
         /// </summary>
         private List<Building> buildingList = new List<Building>();
-        private Controller controller;
-
-        public BuildingManager(Controller controller)
-        {
-            this.controller = controller;
-        }
 
         /// <summary>
         /// Adds a new building object to the buildingList
@@ -30,7 +24,6 @@ namespace Assignment_1A
         public void AddBuilding(Building newBuilding)
         {
             buildingList.Add(newBuilding);
-            controller.UpdateTable();
         }
 
         /// <summary>
@@ -40,7 +33,6 @@ namespace Assignment_1A
         public void RemoveBuildingAtIndex(int index)
         {
             buildingList.RemoveAt(index);
-            controller.UpdateTable();
         }
 
         /// <summary>
@@ -49,7 +41,6 @@ namespace Assignment_1A
         public void RemoveAllBuildings()
         {
             buildingList.Clear();
-            controller.UpdateTable();
         }
 
         /*public List<Building> SearchAfterObject()

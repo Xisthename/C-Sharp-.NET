@@ -5,19 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment_1A
+namespace Data_Access_Layer__DAL_
 {
     /// <summary>
     /// Daniel Petersén
     /// 2018-09-09
     /// </summary>
-    abstract class Building : ICloneable
+    public abstract class Building : Address, ICloneable
     {
         /// <summary>
         /// Delecering necessary variables
         /// </summary>
         public int Id { get; set; }
-        public Address Address { get; set; }
         public LegalType LegalType { get; set; }
         public Image Image { get; set; }
         public abstract String GetBuildingCategory();
@@ -28,7 +27,6 @@ namespace Assignment_1A
         /// </summary>
         public Building()
         {
-            Address = new Address();
         }
 
         /// <summary>
