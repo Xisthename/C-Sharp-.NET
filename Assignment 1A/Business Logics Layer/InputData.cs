@@ -18,14 +18,18 @@ namespace Business_Logics_Layer
         /// <summary>
         /// Delecering necessary variables
         /// </summary>
-        private DataController dataController;
-        private Building newBuilding;
-        private Picture picture;
+        private DataController controller;
+        private Building tempBuilding;
+        private Image tempImage;
         public static int selectedindex;
 
-        public InputData(DataController dataController)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="controller"></param>
+        public InputData(DataController controller)
         {
-            this.dataController = dataController;
+            this.controller = controller;
         }
 
         public static string[] GetCountries()
@@ -92,13 +96,13 @@ namespace Business_Logics_Layer
             {
                 try
                 {
-                    picture = new Picture(openFileDialog.FileName);
+                    tempImage = Picture.ReadInImage(openFileDialog.FileName);
+                    return true;
                 }
                 catch (Exception)
                 {
                     return false;
                 }
-                return true;
             }
             else
             {
@@ -112,40 +116,113 @@ namespace Business_Logics_Layer
         /// <returns></returns>
         public Image GetImage()
         {
-            return picture.Image;
+            return tempImage;
         }
 
-        public bool ReadInputAndSetData(int id, ComboBox typeComboBox, ComboBox countriesComboBox, String city, String street, String zipcode, ComboBox legalComboBox)
+        /// <summary>
+        /// Clears an image if one has been chosen before
+        /// </summary>
+        public void ClearImage()
+        {
+            if (tempImage != null)
+            {
+                tempImage = null;
+            }
+        }
+
+        /// <summary>
+        /// Tries to read all inputs from the user to create a new building object
+        /// Returns true when all inputs are correct
+        /// Returns false if any input is invalid 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="typeComboBox"></param>
+        /// <param name="countriesComboBox"></param>
+        /// <param name="city"></param>
+        /// <param name="street"></param>
+        /// <param name="zipcode"></param>
+        /// <param name="legalComboBox"></param>
+        /// <returns></returns>
+        public bool ReadBuildningInput(int id, ComboBox typeComboBox, ComboBox countriesComboBox, String city, String street, String zipcode, ComboBox legalComboBox)
         {
             if (selectedindex == 1)
             {
-                newBuilding = new CommercialBuilding();
-                newBuilding.BuildingType = ((CommercialType) typeComboBox.SelectedIndex).ToString();
+                tempBuilding = new CommercialBuilding();
+                tempBuilding.BuildingType = ((CommercialType) typeComboBox.SelectedIndex).ToString(); // Cant get wrong input 
             }
             else
             {
-                newBuilding = new ResidentialBuilding();
-                newBuilding.BuildingType = ((ResidentialType) typeComboBox.SelectedIndex).ToString();
+                tempBuilding = new ResidentialBuilding();
+                tempBuilding.BuildingType = ((ResidentialType) typeComboBox.SelectedIndex).ToString(); // Cant get wrong input 
             }
-            newBuilding.Id = id;
-            newBuilding.Country = (Countries)countriesComboBox.SelectedIndex;
-            newBuilding.City = city;
-            newBuilding.Street = street;
-            newBuilding.ZipCode = zipcode;
-            newBuilding.LegalType = (LegalType)legalComboBox.SelectedIndex;
 
-            newBuilding.Image = picture.Image;
-            picture.Image = null;
-            dataController.AddBuilding(newBuilding);
-
+            if (!CheckBuildingCity(city) || !CheckBuildingStreet(street) || !CheckBuildingZipCode(zipcode) || !CheckImage())
+            {
+                return false;
+            }
+            tempBuilding.Id = id; // Cant get wrong input 
+            tempBuilding.Country = (Countries)countriesComboBox.SelectedIndex; // Cant get wrong input
+            tempBuilding.LegalType = (LegalType)legalComboBox.SelectedIndex; // Cant get wrong input 
             return true;
         }
 
-        /*private bool ReadBuildingType()
+        private bool CheckBuildingCity(String city)
         {
-
-
+            if (!String.IsNullOrEmpty(city))
+            {
+                tempBuilding.City = city;
+                return true;
+            }
+            DisplayErrorMessage("Please fill in the buildning´s City");
             return false;
-        }*/
+        }
+
+        private bool CheckBuildingStreet(String street)
+        {
+            if (!String.IsNullOrEmpty(street))
+            {
+                tempBuilding.Street = street;
+                return true;
+            }
+            DisplayErrorMessage("Please fill in the buildning´s Street");
+            return false;
+        }
+
+        private bool CheckBuildingZipCode(String zipCode)
+        {
+            if (zipCode.Length == 5)
+            {
+                tempBuilding.ZipCode = zipCode;
+                return true;
+            }
+            DisplayErrorMessage("Please fill in the buildning´s Zip Code");
+            return false;
+        }
+
+        private bool CheckImage()
+        {
+            if (tempImage != null)
+            {
+                tempBuilding.Image = tempImage;
+                return true;
+            }
+            DisplayErrorMessage("Please select an image for the buildning");
+            return false;
+        }
+
+        private void DisplayErrorMessage(String errorText)
+        {
+            MessageBox.Show(errorText + " and try again!");
+        }
+
+        public void AddBuilding()
+        {
+            controller.AddBuilding(tempBuilding);
+        }
+
+        public void EditBuilding(int index)
+        {
+            controller.EditBuilding(index, tempBuilding);
+        }
     }
 }

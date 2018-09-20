@@ -41,6 +41,16 @@ namespace Business_Logics_Layer
         }
 
         /// <summary>
+        /// Updates a building´s inforamtion
+        /// </summary>
+        /// <param name="building"></param>
+        internal void EditBuilding(int index, Building building)
+        {
+            buildingManager.EditBuilding(index, building);
+            UpdateTable();
+        }
+
+        /// <summary>
         /// Removes an object at a given index from the buildingList
         /// </summary>
         /// <param name="index"></param>

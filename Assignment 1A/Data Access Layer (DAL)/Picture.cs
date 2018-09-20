@@ -17,37 +17,25 @@ namespace Data_Access_Layer__DAL_
     public class Picture
     {
         /// <summary>
-        /// Delecering necessary variable
+        /// Tries to read in an image from a specific path
         /// </summary>
-        public Image Image { get; set;}
-
-        public Picture(string fileName)
-        {
-            ReadInImage(fileName);
-        }
-
-        /// <summary>
-        /// Clears the data of the variable image
-        /// </summary>
-        public void ClearImage()
-        {
-            Image = null;
-        }
-
-        /// <summary>
-        /// Tries to read an image from a specific path
-        /// </summary>
-        public void ReadInImage(String path)
+        public static Image ReadInImage(String path)
         {
             try
             {
+                Image image;
+
                 using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
                 {
-                    Image = Image.FromStream(stream);
+                    image = Image.FromStream(stream);
                 }
-                Image = Picture.ResizeImage(Image, 64, 64);
+                image = ResizeImage(image, 64, 64);
+                return image;
             }
-            catch { }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -57,7 +45,7 @@ namespace Data_Access_Layer__DAL_
         /// <param name="width">The width to resize to</param>
         /// <param name="height">The height to resize to</param>
         /// <returns>The resized image</returns>
-        public static Bitmap ResizeImage(Image image, int width, int height)
+        private static Bitmap ResizeImage(Image image, int width, int height)
         {
             var destRect = new Rectangle(0, 0, width, height);
             var destImage = new Bitmap(width, height);

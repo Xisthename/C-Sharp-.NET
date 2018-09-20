@@ -43,6 +43,11 @@ namespace Data_Access_Layer__DAL_
             buildingList.Clear();
         }
 
+        public void EditBuilding(int index, Building building)
+        {
+            buildingList[index] = building;
+        }
+
         /*public List<Building> SearchAfterObject()
         {
         }*/

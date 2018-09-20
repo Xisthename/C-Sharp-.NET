@@ -45,7 +45,6 @@
     <Compile Include="Address.cs" />
     <Compile Include="Building.cs" />
     <Compile Include="BuildingManager.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="CommercialBuilding.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Picture.cs" />

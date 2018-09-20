@@ -18,20 +18,25 @@ namespace Assignment_1
     public partial class HomesForSale : Form
     {
         /// <summary>
-        /// Delecering necessary variable
+        /// Delecering necessary variables
         /// </summary>
         private InputData inputData;
-        private DataController dataController;
+        private DataController controller;
 
         public HomesForSale()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// When the application starts two instance to the controller and input class are made, futhermore Initlize the GUI too
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HomesForSale_Load(object sender, EventArgs e)
         {
-            dataController = new DataController(table);
-            inputData = new InputData(dataController);
+            controller = new DataController(table);
+            inputData = new InputData(controller);
             InitGUI();
         }
 
@@ -62,6 +67,10 @@ namespace Assignment_1
             ChangeBuildingType(categoryComboBox.SelectedIndex);
         }
 
+        /// <summary>
+        /// Changes the building's type alternatives
+        /// </summary>
+        /// <param name="isCommercialBuilding"></param>
         private void ChangeBuildingType(int isCommercialBuilding)
         {
             typeComboBox.Items.Clear();
@@ -69,18 +78,89 @@ namespace Assignment_1
             typeComboBox.SelectedIndex = 0;
         }
 
-        private void addButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Tries to read in an image and display it to the user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void imagebutton_Click(object sender, EventArgs e)
         {
-            if (inputData.ReadInputAndSetData((int)idNumericUpDown.Value, typeComboBox, countriesComboBox,
-                cityTextBox.Text, streetTextBox.Text, zipCodeTextBox.Text, legalComboBox))
+            if (inputData.ReadImage())
             {
-                MessageBox.Show("A new building has been added!");
+                displayImage.BringToFront();
+                displayImage.Image = inputData.GetImage();
             }
         }
 
+        /// <summary>
+        /// Clears an image if one has been chosen before by the user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void clearImageButton_Click(object sender, EventArgs e)
+        {
+            ClearChosenImage();
+        }
+
+        /// <summary>
+        /// Clears an image if one has been chosen before by the user
+        /// </summary>
+        private void ClearChosenImage()
+        {
+            imageLabel.BringToFront();
+            inputData.ClearImage();
+            displayImage.Image = inputData.GetImage();
+        }
+
+        /// <summary>
+        /// Tries to add a new buildning and every input that can fail is checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            AddOrEdit(true);
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            if (table.SelectedRows.Count == 1)
+            {
+                AddOrEdit(false);
+            }
+            else
+            {
+                MessageBox.Show("No building is selected!");
+            }
+        }
+
+        private void AddOrEdit(bool addBuilding)
+        {
+            if (inputData.ReadBuildningInput((int) idNumericUpDown.Value, typeComboBox, countriesComboBox,
+                cityTextBox.Text, streetTextBox.Text, zipCodeTextBox.Text, legalComboBox))
+            {
+                if (addBuilding)
+                {
+                    inputData.AddBuilding();
+                    MessageBox.Show("A new building has been added!");
+                }
+                else
+                {
+                    inputData.EditBuilding(table.CurrentCell.RowIndex);
+                    MessageBox.Show("A building has been edited!");
+                }
+                ClearChosenImage();
+            }
+        }
+
+        /// <summary>
+        /// Removes the selected building object from not only the GUI but also it's data from a list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void removeButton_Click(object sender, EventArgs e)
         {
-            dataController.RemoveBuildingAtIndex(table.CurrentCell.RowIndex);
+            controller.RemoveBuildingAtIndex(table.CurrentCell.RowIndex);
         }
 
         /// <summary>
@@ -93,19 +173,6 @@ namespace Assignment_1
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
-            }
-        }
-
-        /// <summary>
-        /// Tries to read in an image and display it to the user
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void picturebutton_Click(object sender, EventArgs e)
-        {
-            if (inputData.ReadImage())
-            {
-                pictureBox1.Image = inputData.GetImage();
             }
         }
     }
