@@ -24,7 +24,7 @@ namespace Business_Logics_Layer
         public static int selectedindex;
 
         /// <summary>
-        /// 
+        /// Constructor that takes in a instance of the controller object and delecers the instance object to this one
         /// </summary>
         /// <param name="controller"></param>
         public InputData(DataController controller)
@@ -32,6 +32,10 @@ namespace Business_Logics_Layer
             this.controller = controller;
         }
 
+        /// <summary>
+        /// Collects the enum Countries data and returns it into a string array
+        /// </summary>
+        /// <returns></returns>
         public static string[] GetCountries()
         {
             string[] countries = Enum.GetNames(typeof(Countries));
@@ -43,11 +47,19 @@ namespace Business_Logics_Layer
             return countries;
         }
 
+        /// <summary>
+        /// Collects the enum Category data and returns it into a string array
+        /// </summary>
+        /// <returns></returns>
         public static string[] GetCategories()
         {
             return Enum.GetNames(typeof(BuildingCategory));
         }
 
+        /// <summary>
+        /// Collects the enum LegalType data and returns it into a string array
+        /// </summary>
+        /// <returns></returns>
         public static string[] GetOwnerships()
         {
             return Enum.GetNames(typeof(LegalType));
@@ -76,7 +88,7 @@ namespace Business_Logics_Layer
         /// Tries to read in an image that is chosen by the user
         /// </summary>
         /// <returns></returns>
-        public bool ReadImage()
+        public bool ReadInImage()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
@@ -104,10 +116,7 @@ namespace Business_Logics_Layer
                     return false;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         /// <summary>
@@ -133,9 +142,8 @@ namespace Business_Logics_Layer
         /// <summary>
         /// Tries to read all inputs from the user to create a new building object
         /// Returns true when all inputs are correct
-        /// Returns false if any input is invalid 
+        /// Returns false if any input is invalid
         /// </summary>
-        /// <param name="id"></param>
         /// <param name="typeComboBox"></param>
         /// <param name="countriesComboBox"></param>
         /// <param name="city"></param>
@@ -143,7 +151,7 @@ namespace Business_Logics_Layer
         /// <param name="zipcode"></param>
         /// <param name="legalComboBox"></param>
         /// <returns></returns>
-        public bool ReadBuildningInput(int id, ComboBox typeComboBox, ComboBox countriesComboBox, String city, String street, String zipcode, ComboBox legalComboBox)
+        public bool ReadBuildningInput(ComboBox typeComboBox, ComboBox countriesComboBox, String city, String street, String zipcode, ComboBox legalComboBox)
         {
             if (selectedindex == 1)
             {
@@ -160,12 +168,17 @@ namespace Business_Logics_Layer
             {
                 return false;
             }
-            tempBuilding.Id = id; // Cant get wrong input 
             tempBuilding.Country = (Countries)countriesComboBox.SelectedIndex; // Cant get wrong input
             tempBuilding.LegalType = (LegalType)legalComboBox.SelectedIndex; // Cant get wrong input 
             return true;
         }
 
+        /// <summary>
+        /// If the string 'city' isn´t null nor empty it's value will be declared into tempBuilding and return true
+        /// Otherwise an error message will be displayed to the user and false is returned
+        /// </summary>
+        /// <param name="city"></param>
+        /// <returns></returns>
         private bool CheckBuildingCity(String city)
         {
             if (!String.IsNullOrEmpty(city))
@@ -173,10 +186,16 @@ namespace Business_Logics_Layer
                 tempBuilding.City = city;
                 return true;
             }
-            DisplayErrorMessage("Please fill in the buildning´s City");
+            DisplayTryAgainMessage("Please fill in the buildning´s City");
             return false;
         }
 
+        /// <summary>
+        /// If the string 'street' isn´t null nor empty it's value will be declared into tempBuilding and return true
+        /// Otherwise a error message will be displayed to the user and false is returned
+        /// </summary>
+        /// <param name="street"></param>
+        /// <returns></returns>
         private bool CheckBuildingStreet(String street)
         {
             if (!String.IsNullOrEmpty(street))
@@ -184,10 +203,16 @@ namespace Business_Logics_Layer
                 tempBuilding.Street = street;
                 return true;
             }
-            DisplayErrorMessage("Please fill in the buildning´s Street");
+            DisplayTryAgainMessage("Please fill in the buildning´s Street");
             return false;
         }
 
+        /// <summary>
+        /// If the  string 'zipCode' contains 5 letters it's value will be declared into tempBuilding and return true
+        /// Otherwise an error message will be displayed to the user and false is returned
+        /// </summary>
+        /// <param name="zipCode"></param>
+        /// <returns></returns>
         private bool CheckBuildingZipCode(String zipCode)
         {
             if (zipCode.Length == 5)
@@ -195,10 +220,15 @@ namespace Business_Logics_Layer
                 tempBuilding.ZipCode = zipCode;
                 return true;
             }
-            DisplayErrorMessage("Please fill in the buildning´s Zip Code");
+            DisplayTryAgainMessage("Please fill in the buildning´s Zip Code");
             return false;
         }
 
+        /// <summary>
+        /// If the Image 'tempImage' isn´t null it's value will be declared into tempBuilding and return true
+        /// Otherwise an error message will be displayed to the user and false is returned
+        /// </summary>
+        /// <returns></returns>
         private bool CheckImage()
         {
             if (tempImage != null)
@@ -206,23 +236,60 @@ namespace Business_Logics_Layer
                 tempBuilding.Image = tempImage;
                 return true;
             }
-            DisplayErrorMessage("Please select an image for the buildning");
+            DisplayTryAgainMessage("Please select an image for the buildning");
             return false;
         }
 
-        private void DisplayErrorMessage(String errorText)
+        /// <summary>
+        /// Used to display an error message to the user
+        /// </summary>
+        /// <param name="errorText"></param>
+        private void DisplayTryAgainMessage(String errorText)
         {
             MessageBox.Show(errorText + " and try again!");
         }
 
+        /// <summary>
+        /// Adds the temporary building object to a list
+        /// </summary>
         public void AddBuilding()
         {
-            controller.AddBuilding(tempBuilding);
+            if (controller.AddBuilding(tempBuilding))
+            {
+                controller.UpdateTable();
+            }
+            else
+            {
+                MessageBox.Show("Unkown Error! Could not add a building");
+            }
         }
 
-        public void EditBuilding(int index)
+        /// <summary>
+        /// Edits an existing building object's fields in a list with the given ID to this temporary building object
+        /// </summary>
+        /// <param name="buildingID"></param>
+        public void EditBuilding(String buildingID)
         {
-            controller.EditBuilding(index, tempBuilding);
+            if (controller.EditBuilding(buildingID, tempBuilding))
+            {
+                controller.UpdateTable();
+            }
+            else
+            {
+                MessageBox.Show("Unkown Error! Could not edit the selected building");
+            }
+        }
+
+        public void RemoveBuildingWithID(String buildingID)
+        {
+            if (controller.RemoveBuildingWithID(buildingID))
+            {
+                controller.UpdateTable();
+            }
+            else
+            {
+                MessageBox.Show("Unkown Error! Could not remove the selected building");
+            }
         }
     }
 }

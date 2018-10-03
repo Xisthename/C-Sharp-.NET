@@ -42,7 +42,6 @@
             this.ColumnImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.removeButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
-            this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.buildningHeaderBox = new System.Windows.Forms.GroupBox();
             this.imageLabel = new System.Windows.Forms.Label();
             this.clearImageButton = new System.Windows.Forms.Button();
@@ -66,18 +65,15 @@
             this.cityLabel = new System.Windows.Forms.Label();
             this.countriesComboBox = new System.Windows.Forms.ComboBox();
             this.CountryLabel = new System.Windows.Forms.Label();
-            this.idBox = new System.Windows.Forms.GroupBox();
-            this.idLabel = new System.Windows.Forms.Label();
             this.editButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             this.buildningHeaderBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayImage)).BeginInit();
             this.legalBox.SuspendLayout();
             this.typeBox.SuspendLayout();
             this.categoryBox.SuspendLayout();
             this.AddressBox.SuspendLayout();
-            this.idBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // table
@@ -115,7 +111,7 @@
             this.table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.table.RowTemplate.Height = 64;
             this.table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.table.Size = new System.Drawing.Size(1349, 665);
+            this.table.Size = new System.Drawing.Size(1200, 665);
             this.table.TabIndex = 17;
             // 
             // ColumnID
@@ -123,7 +119,7 @@
             this.ColumnID.FillWeight = 35F;
             this.ColumnID.Frozen = true;
             this.ColumnID.HeaderText = "ID";
-            this.ColumnID.MaxInputLength = 10;
+            this.ColumnID.MaxInputLength = 100;
             this.ColumnID.Name = "ColumnID";
             this.ColumnID.ReadOnly = true;
             this.ColumnID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -139,7 +135,7 @@
             this.columnCountry.Name = "columnCountry";
             this.columnCountry.ReadOnly = true;
             this.columnCountry.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.columnCountry.Width = 200;
+            this.columnCountry.Width = 175;
             // 
             // ColumnCity
             // 
@@ -148,7 +144,7 @@
             this.ColumnCity.Name = "ColumnCity";
             this.ColumnCity.ReadOnly = true;
             this.ColumnCity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnCity.Width = 200;
+            this.ColumnCity.Width = 150;
             // 
             // ColumnStreet
             // 
@@ -157,7 +153,7 @@
             this.ColumnStreet.Name = "ColumnStreet";
             this.ColumnStreet.ReadOnly = true;
             this.ColumnStreet.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnStreet.Width = 200;
+            this.ColumnStreet.Width = 175;
             // 
             // ColumnZipCode
             // 
@@ -210,9 +206,9 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(1367, 634);
+            this.removeButton.Location = new System.Drawing.Point(1218, 561);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(363, 45);
+            this.removeButton.Size = new System.Drawing.Size(694, 45);
             this.removeButton.TabIndex = 18;
             this.removeButton.Text = "Remove Selected Building";
             this.removeButton.UseVisualStyleBackColor = true;
@@ -220,44 +216,38 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(1367, 583);
+            this.addButton.Location = new System.Drawing.Point(6, 481);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(175, 45);
+            this.addButton.Size = new System.Drawing.Size(170, 45);
             this.addButton.TabIndex = 19;
             this.addButton.Text = "Add Building";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // idNumericUpDown
-            // 
-            this.idNumericUpDown.Location = new System.Drawing.Point(37, 30);
-            this.idNumericUpDown.Name = "idNumericUpDown";
-            this.idNumericUpDown.Size = new System.Drawing.Size(72, 22);
-            this.idNumericUpDown.TabIndex = 20;
-            // 
             // buildningHeaderBox
             // 
             this.buildningHeaderBox.Controls.Add(this.imageLabel);
             this.buildningHeaderBox.Controls.Add(this.clearImageButton);
+            this.buildningHeaderBox.Controls.Add(this.editButton);
             this.buildningHeaderBox.Controls.Add(this.displayImage);
             this.buildningHeaderBox.Controls.Add(this.imagebutton);
+            this.buildningHeaderBox.Controls.Add(this.addButton);
             this.buildningHeaderBox.Controls.Add(this.legalBox);
             this.buildningHeaderBox.Controls.Add(this.typeBox);
             this.buildningHeaderBox.Controls.Add(this.categoryBox);
             this.buildningHeaderBox.Controls.Add(this.AddressBox);
-            this.buildningHeaderBox.Controls.Add(this.idBox);
-            this.buildningHeaderBox.Location = new System.Drawing.Point(1367, 14);
+            this.buildningHeaderBox.Location = new System.Drawing.Point(1218, 14);
             this.buildningHeaderBox.Name = "buildningHeaderBox";
-            this.buildningHeaderBox.Size = new System.Drawing.Size(363, 560);
+            this.buildningHeaderBox.Size = new System.Drawing.Size(360, 541);
             this.buildningHeaderBox.TabIndex = 24;
             this.buildningHeaderBox.TabStop = false;
-            this.buildningHeaderBox.Text = "Buildning Information";
+            this.buildningHeaderBox.Text = "Add or Edit Buildning";
             // 
             // imageLabel
             // 
             this.imageLabel.AutoSize = true;
             this.imageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.imageLabel.Location = new System.Drawing.Point(260, 492);
+            this.imageLabel.Location = new System.Drawing.Point(266, 415);
             this.imageLabel.Name = "imageLabel";
             this.imageLabel.Size = new System.Drawing.Size(80, 20);
             this.imageLabel.TabIndex = 35;
@@ -265,7 +255,7 @@
             // 
             // clearImageButton
             // 
-            this.clearImageButton.Location = new System.Drawing.Point(6, 517);
+            this.clearImageButton.Location = new System.Drawing.Point(6, 440);
             this.clearImageButton.Name = "clearImageButton";
             this.clearImageButton.Size = new System.Drawing.Size(243, 35);
             this.clearImageButton.TabIndex = 34;
@@ -275,7 +265,7 @@
             // 
             // displayImage
             // 
-            this.displayImage.Location = new System.Drawing.Point(264, 467);
+            this.displayImage.Location = new System.Drawing.Point(270, 390);
             this.displayImage.Name = "displayImage";
             this.displayImage.Size = new System.Drawing.Size(85, 85);
             this.displayImage.TabIndex = 25;
@@ -283,7 +273,7 @@
             // 
             // imagebutton
             // 
-            this.imagebutton.Location = new System.Drawing.Point(6, 467);
+            this.imagebutton.Location = new System.Drawing.Point(6, 390);
             this.imagebutton.Name = "imagebutton";
             this.imagebutton.Size = new System.Drawing.Size(243, 45);
             this.imagebutton.TabIndex = 32;
@@ -295,7 +285,7 @@
             // 
             this.legalBox.Controls.Add(this.legalComboBox);
             this.legalBox.Controls.Add(this.legalLabel);
-            this.legalBox.Location = new System.Drawing.Point(6, 398);
+            this.legalBox.Location = new System.Drawing.Point(6, 321);
             this.legalBox.Name = "legalBox";
             this.legalBox.Size = new System.Drawing.Size(347, 63);
             this.legalBox.TabIndex = 31;
@@ -324,7 +314,7 @@
             // 
             this.typeBox.Controls.Add(this.typeComboBox);
             this.typeBox.Controls.Add(this.typeLabel);
-            this.typeBox.Location = new System.Drawing.Point(6, 329);
+            this.typeBox.Location = new System.Drawing.Point(6, 252);
             this.typeBox.Name = "typeBox";
             this.typeBox.Size = new System.Drawing.Size(349, 63);
             this.typeBox.TabIndex = 30;
@@ -353,7 +343,7 @@
             // 
             this.categoryBox.Controls.Add(this.categoryComboBox);
             this.categoryBox.Controls.Add(this.categoryLabel);
-            this.categoryBox.Location = new System.Drawing.Point(6, 260);
+            this.categoryBox.Location = new System.Drawing.Point(6, 183);
             this.categoryBox.Name = "categoryBox";
             this.categoryBox.Size = new System.Drawing.Size(349, 63);
             this.categoryBox.TabIndex = 29;
@@ -389,7 +379,7 @@
             this.AddressBox.Controls.Add(this.cityLabel);
             this.AddressBox.Controls.Add(this.countriesComboBox);
             this.AddressBox.Controls.Add(this.CountryLabel);
-            this.AddressBox.Location = new System.Drawing.Point(6, 98);
+            this.AddressBox.Location = new System.Drawing.Point(6, 21);
             this.AddressBox.Name = "AddressBox";
             this.AddressBox.Size = new System.Drawing.Size(349, 156);
             this.AddressBox.TabIndex = 23;
@@ -466,54 +456,41 @@
             this.CountryLabel.TabIndex = 21;
             this.CountryLabel.Text = "Country:";
             // 
-            // idBox
-            // 
-            this.idBox.Controls.Add(this.idNumericUpDown);
-            this.idBox.Controls.Add(this.idLabel);
-            this.idBox.Location = new System.Drawing.Point(6, 30);
-            this.idBox.Name = "idBox";
-            this.idBox.Size = new System.Drawing.Size(123, 62);
-            this.idBox.TabIndex = 22;
-            this.idBox.TabStop = false;
-            this.idBox.Text = "ID";
-            // 
-            // idLabel
-            // 
-            this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(6, 32);
-            this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(25, 17);
-            this.idLabel.TabIndex = 21;
-            this.idLabel.Text = "ID:";
-            // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(1550, 583);
+            this.editButton.Location = new System.Drawing.Point(185, 481);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(180, 45);
+            this.editButton.Size = new System.Drawing.Size(170, 45);
             this.editButton.TabIndex = 33;
             this.editButton.Text = "Edit Selected Building";
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            // 
+            // searchButton
+            // 
+            this.searchButton.Location = new System.Drawing.Point(1651, 238);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(163, 30);
+            this.searchButton.TabIndex = 25;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
             // 
             // HomesForSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1778, 945);
+            this.ClientSize = new System.Drawing.Size(1924, 693);
+            this.Controls.Add(this.searchButton);
             this.Controls.Add(this.buildningHeaderBox);
             this.Controls.Add(this.table);
-            this.Controls.Add(this.editButton);
             this.Controls.Add(this.removeButton);
-            this.Controls.Add(this.addButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomesForSale";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Homes for Sale";
             this.Load += new System.EventHandler(this.HomesForSale_Load);
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             this.buildningHeaderBox.ResumeLayout(false);
             this.buildningHeaderBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayImage)).EndInit();
@@ -525,8 +502,6 @@
             this.categoryBox.PerformLayout();
             this.AddressBox.ResumeLayout(false);
             this.AddressBox.PerformLayout();
-            this.idBox.ResumeLayout(false);
-            this.idBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -535,13 +510,10 @@
         private System.Windows.Forms.DataGridView table;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Button addButton;
-        private System.Windows.Forms.NumericUpDown idNumericUpDown;
         private System.Windows.Forms.GroupBox buildningHeaderBox;
         private System.Windows.Forms.GroupBox AddressBox;
         private System.Windows.Forms.ComboBox countriesComboBox;
         private System.Windows.Forms.Label CountryLabel;
-        private System.Windows.Forms.GroupBox idBox;
-        private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.Label cityLabel;
         private System.Windows.Forms.TextBox streetTextBox;
@@ -557,6 +529,11 @@
         private System.Windows.Forms.GroupBox legalBox;
         private System.Windows.Forms.ComboBox legalComboBox;
         private System.Windows.Forms.Label legalLabel;
+        private System.Windows.Forms.Button imagebutton;
+        private System.Windows.Forms.PictureBox displayImage;
+        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.Button clearImageButton;
+        private System.Windows.Forms.Label imageLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnCountry;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCity;
@@ -566,11 +543,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLegalType;
         private System.Windows.Forms.DataGridViewImageColumn ColumnImage;
-        private System.Windows.Forms.Button imagebutton;
-        private System.Windows.Forms.PictureBox displayImage;
-        private System.Windows.Forms.Button editButton;
-        private System.Windows.Forms.Button clearImageButton;
-        private System.Windows.Forms.Label imageLabel;
+        private System.Windows.Forms.Button searchButton;
     }
 }
 

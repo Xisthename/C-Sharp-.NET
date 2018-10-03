@@ -11,23 +11,32 @@ using System.Threading.Tasks;
 namespace Data_Access_Layer__DAL_
 {
     /// <summary>
-    /// Building Category
+    /// Enum for building categories
     /// </summary>
     public enum BuildingCategory
     {
         Residential, Commercial
     }
 
+    /// <summary>
+    /// Enum for residential type
+    /// </summary>
     public enum ResidentialType
     {
         House, Villa, Apartment, Townhouse
     }
 
+    /// <summary>
+    /// Enum for commercial type
+    /// </summary>
     public enum CommercialType
     {
         Shop, Warehouse
     }
 
+    /// <summary>
+    /// Enum for legal type
+    /// </summary>
     public enum LegalType
     {
         Ownership, Tenement, Rental
@@ -35,7 +44,7 @@ namespace Data_Access_Layer__DAL_
 
 
     /// <summary>
-    /// The countries of the world.
+    /// The countries of the world
     /// </summary>
     public enum Countries
     {

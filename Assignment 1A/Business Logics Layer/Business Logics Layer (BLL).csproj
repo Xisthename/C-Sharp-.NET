@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildingManager.cs" />
     <Compile Include="DataController.cs" />
     <Compile Include="InputData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

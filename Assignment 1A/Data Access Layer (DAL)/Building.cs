@@ -16,17 +16,23 @@ namespace Data_Access_Layer__DAL_
         /// <summary>
         /// Delecering necessary variables
         /// </summary>
-        public int Id { get; set; }
+        public String ID { get; set; }
         public LegalType LegalType { get; set; }
         public Image Image { get; set; }
         public abstract String GetBuildingCategory();
         public abstract String BuildingType { get; set; }
 
         /// <summary>
-        /// Constructor that creates a new empty Address object
+        /// Empty Constructor
         /// </summary>
         public Building()
         {
+        }
+
+        public override String ToString()
+        {
+            return ID + ", " + GetCountry() + ", " + City + ", " + Street + ", " + ZipCode + ", " + GetBuildingCategory() + ", " 
+                + BuildingType + ", " + LegalType.ToString();
         }
 
         /// <summary>
@@ -35,7 +41,7 @@ namespace Data_Access_Layer__DAL_
         /// <returns></returns>
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
     }
 }

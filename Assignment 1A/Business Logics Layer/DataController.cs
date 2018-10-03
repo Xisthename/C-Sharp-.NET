@@ -20,9 +20,10 @@ namespace Business_Logics_Layer
         /// </summary>
         private DataGridView table;
         private BuildingManager buildingManager = new BuildingManager();
+        private int index;
 
         /// <summary>
-        /// 
+        /// Constructor that takes in the DataGridView table which is later used to display objects of buildings
         /// </summary>
         /// <param name="table"></param>
         public DataController(DataGridView table)
@@ -34,39 +35,75 @@ namespace Business_Logics_Layer
         /// Adds an object to the building list
         /// </summary>
         /// <param name="newBuilding"></param>
-        internal void AddBuilding(Building newBuilding)
+        internal bool AddBuilding(Building newBuilding)
         {
-            buildingManager.AddBuilding(newBuilding);
-            UpdateTable();
+            newBuilding.ID = buildingManager.GenerateID();
+            return buildingManager.Add(newBuilding);
         }
 
         /// <summary>
-        /// Updates a building´s inforamtion
+        /// Tries to update a building´s information
         /// </summary>
+        /// <param name="buildingID"></param>
         /// <param name="building"></param>
-        internal void EditBuilding(int index, Building building)
+        internal bool EditBuilding(String buildingID, Building editedBuilding)
         {
-            buildingManager.EditBuilding(index, building);
-            UpdateTable();
+            if (CheckID(buildingID))
+            {
+                return buildingManager.EditAt(index, editedBuilding);
+            }
+            return false;
         }
 
         /// <summary>
-        /// Removes an object at a given index from the buildingList
+        /// Tries to Remove an object with a given building ID
         /// </summary>
-        /// <param name="index"></param>
-        public void RemoveBuildingAtIndex(int index)
+        /// <param name="buildingID"></param>
+        internal bool RemoveBuildingWithID(String buildingID)
         {
-            buildingManager.RemoveBuildingAtIndex(index);
-            UpdateTable();
+            if (CheckID(buildingID))
+            {
+                return buildingManager.DeleteAt(index);
+            }
+            return false;
         }
 
-        public void UpdateTable()
+        private bool CheckID(String buildingID)
+        {
+            index = buildingManager.GetIndexFromID(buildingID);
+
+            if (index != -1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Clears the table
+        /// </summary>
+        private void ClearTable()
         {
             table.Rows.Clear();
-            for (int i = 0; i < buildingManager.GetBuildingList().Count; i++)
+        }
+
+        /// <summary>
+        /// Updates the GUI that displays objects of buildings
+        /// </summary>
+        public void UpdateTable()
+        {
+            ClearTable();
+            List<String> list = buildingManager.ToStringList();
+
+            for (int row = 0; row < buildingManager.Count; row++)
             {
-                Building b = buildingManager.GetBuilding(i);
-                table.Rows.Add(b.Id.ToString(), b.GetCountry(), b.City, b.Street, b.ZipCode, b.GetBuildingCategory(), b.BuildingType, b.LegalType.ToString(), b.Image);
+                table.Rows.Add();
+
+                for (int col = 0; col < table.ColumnCount - 1; col++)
+                {
+                    table[col, row].Value = list[row].Split(',').ToArray()[col];
+                }
+                table[table.ColumnCount - 1, row].Value = buildingManager.GetImageAt(row);
             }
         }
     }

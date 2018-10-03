@@ -85,7 +85,7 @@ namespace Assignment_1
         /// <param name="e"></param>
         private void imagebutton_Click(object sender, EventArgs e)
         {
-            if (inputData.ReadImage())
+            if (inputData.ReadInImage())
             {
                 displayImage.BringToFront();
                 displayImage.Image = inputData.GetImage();
@@ -122,9 +122,14 @@ namespace Assignment_1
             AddOrEdit(true);
         }
 
+        /// <summary>
+        /// Tries to edit the building that is selected in the table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void editButton_Click(object sender, EventArgs e)
         {
-            if (table.SelectedRows.Count == 1)
+            if (table.SelectedRows.Count == 1) // Are there even a building object to edit?
             {
                 AddOrEdit(false);
             }
@@ -134,33 +139,50 @@ namespace Assignment_1
             }
         }
 
+        /// <summary>
+        /// Tries to add or edit a building
+        /// </summary>
+        /// <param name="addBuilding"></param>
         private void AddOrEdit(bool addBuilding)
         {
-            if (inputData.ReadBuildningInput((int) idNumericUpDown.Value, typeComboBox, countriesComboBox,
-                cityTextBox.Text, streetTextBox.Text, zipCodeTextBox.Text, legalComboBox))
+            if (inputData.ReadBuildningInput(typeComboBox, countriesComboBox, cityTextBox.Text, streetTextBox.Text, zipCodeTextBox.Text, legalComboBox))
             {
                 if (addBuilding)
                 {
                     inputData.AddBuilding();
-                    MessageBox.Show("A new building has been added!");
                 }
                 else
                 {
-                    inputData.EditBuilding(table.CurrentCell.RowIndex);
-                    MessageBox.Show("A building has been edited!");
+                    if (table.SelectedRows.Count > 0)
+                    {
+                        String buildingID = table.SelectedCells[0].Value.ToString();
+                        inputData.EditBuilding(buildingID);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No building from the list is selected and therfore cannot be modified");
+                    }
                 }
-                ClearChosenImage();
+                //ClearChosenImage();
             }
         }
 
         /// <summary>
-        /// Removes the selected building object from not only the GUI but also it's data from a list
+        /// Removes the selected building object from not only the GUI but also it's data from the application
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void removeButton_Click(object sender, EventArgs e)
         {
-            controller.RemoveBuildingAtIndex(table.CurrentCell.RowIndex);
+            if (table.SelectedRows.Count > 0)
+            {
+                String buildingID = table.SelectedCells[0].Value.ToString();
+                inputData.RemoveBuildingWithID(buildingID);
+            }
+            else
+            {
+                MessageBox.Show("No building from the list is selected and therfore cannot be removed");
+            }
         }
 
         /// <summary>
