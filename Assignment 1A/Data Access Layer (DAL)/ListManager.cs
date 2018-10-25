@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Data_Access_Layer__DAL_
 {
+    [Serializable]
     public class ListManager<T> : IListManager<T>
     {
         private List<T> list = new List<T>();
@@ -43,6 +47,17 @@ namespace Data_Access_Layer__DAL_
             return false;
         }
 
+        public bool InsertAt(int index, T type)
+        {
+            try
+            {
+                list.Insert(index, type);
+                return true;
+            }
+            catch { }
+            return false;
+        }
+
         public bool EditAt(int index, T type)
         {
             if (!CheckIndex(index))
@@ -53,9 +68,9 @@ namespace Data_Access_Layer__DAL_
             return false;
         }
 
-        public T GetAt(int id)
+        public T GetAt(int index)
         {
-            return list[id];
+            return list[index];
         }
 
         public string[] ToStringArray()
@@ -76,14 +91,27 @@ namespace Data_Access_Layer__DAL_
             return list;
         }
 
-        public bool BinaryDeSerialization(string fileName)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public bool BinarySerialization(string fileName)
         {
-            throw new NotImplementedException();
+            using (Stream stream = File.Open(fileName, FileMode.Create))
+            {
+                var bformatter = new BinaryFormatter();
+
+                bformatter.Serialize(stream, list);
+                return true;
+            }
+        }
+
+        public bool BinaryDeSerialization(string fileName)
+        {
+            using (Stream stream = File.Open(fileName, FileMode.Open))
+            {
+                var bformatter = new BinaryFormatter();
+                list = (List<T>) bformatter.Deserialize(stream);
+                return true;
+            }
         }
 
         public bool XMLSerialize(string fileName)

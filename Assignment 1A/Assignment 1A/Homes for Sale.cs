@@ -55,6 +55,25 @@ namespace Assignment_1
             legalComboBox.SelectedIndex = 0;
 
             ChangeBuildingType(0);
+
+            searchTypeComboBox.Items.AddRange(InputData.GetBothBuildingTypes());
+            searchTypeComboBox.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Resets the GUI to how the application was when it started
+        /// </summary>
+        private void ResetGUI()
+        {
+            countriesComboBox.Items.Clear();
+            categoryComboBox.Items.Clear();
+            legalComboBox.Items.Clear();
+            searchTypeComboBox.Items.Clear();
+            cityTextBox.ResetText();
+            streetTextBox.ResetText();
+            zipCodeTextBox.ResetText();
+            ClearChosenImage();
+            InitGUI();
         }
 
         /// <summary>
@@ -74,7 +93,7 @@ namespace Assignment_1
         private void ChangeBuildingType(int isCommercialBuilding)
         {
             typeComboBox.Items.Clear();
-            typeComboBox.Items.AddRange(InputData.ChangeBuildingType(isCommercialBuilding));
+            typeComboBox.Items.AddRange(InputData.GetBuildingTypes(isCommercialBuilding));
             typeComboBox.SelectedIndex = 0;
         }
 
@@ -119,11 +138,37 @@ namespace Assignment_1
         /// <param name="e"></param>
         private void addButton_Click(object sender, EventArgs e)
         {
-            AddOrEdit(true);
+            if (InputDataIsCorrect())
+            {
+                inputData.AddBuilding();
+            }
         }
 
         /// <summary>
-        /// Tries to edit the building that is selected in the table
+        /// Tries to insert a new buildning and every input that can fail is checked 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void insertButton_Click(object sender, EventArgs e)
+        {
+            if (InputDataIsCorrect())
+            {
+                int index;
+
+                if (table.SelectedRows.Count == 1) // Are there even a building object to edit?
+                {
+                    index = table.CurrentCell.RowIndex;
+                }
+                else
+                {
+                    index = 0;
+                }
+                inputData.InsertBuilding(index);
+            }
+        }
+
+        /// <summary>
+        /// Tries to edit a building that is selected in the table
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -131,40 +176,30 @@ namespace Assignment_1
         {
             if (table.SelectedRows.Count == 1) // Are there even a building object to edit?
             {
-                AddOrEdit(false);
+                if (InputDataIsCorrect())
+                {
+                    String buildingID = table.SelectedCells[0].Value.ToString();
+                    inputData.EditBuilding(buildingID);
+                }
             }
             else
             {
-                MessageBox.Show("No building is selected!");
+                MessageBox.Show("No building is selected and therfore cannot be modified!");
             }
         }
 
         /// <summary>
-        /// Tries to add or edit a building
+        /// Returns true if the data can be used otherwise false is returned and a certain error message will appear
         /// </summary>
-        /// <param name="addBuilding"></param>
-        private void AddOrEdit(bool addBuilding)
+        /// <returns></returns>
+        private bool InputDataIsCorrect()
         {
             if (inputData.ReadBuildningInput(typeComboBox, countriesComboBox, cityTextBox.Text, streetTextBox.Text, zipCodeTextBox.Text, legalComboBox))
             {
-                if (addBuilding)
-                {
-                    inputData.AddBuilding();
-                }
-                else
-                {
-                    if (table.SelectedRows.Count > 0)
-                    {
-                        String buildingID = table.SelectedCells[0].Value.ToString();
-                        inputData.EditBuilding(buildingID);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No building from the list is selected and therfore cannot be modified");
-                    }
-                }
-                //ClearChosenImage();
+                return true;
             }
+            return false;
+            //ClearChosenImage();
         }
 
         /// <summary>
@@ -185,6 +220,17 @@ namespace Assignment_1
             }
         }
 
+
+        private void searchButton_Click(object sender, EventArgs e) // TODO
+        {
+
+        }
+
+        private void ResetSearchButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// Only allow numbers in the textbox
         /// </summary>
@@ -196,6 +242,81 @@ namespace Assignment_1
             {
                 e.Handled = true;
             }
+        }
+
+        /// <summary>
+        /// Starts off with asking the user if the current work should be saved
+        /// The return of this is then cast into the datacontroller object where the data is saved or not
+        /// Then are all building objects removed and the update of the GUI comes in
+        /// Lastly all components are reset to how they were when the application started
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.NewFile(SaveOrNot());
+            ResetGUI();
+        }
+
+        /// <summary>
+        /// Starts off with asking the user if the current work should be saved
+        /// The return of this is then cast into the datacontroller object where the data is saved or not
+        /// Finally a file is loaded and the current list of objects are updated to the files data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.OpenFile(SaveOrNot());
+        }
+
+        /// <summary>
+        /// Asks the user if the current work should be saved or not
+        /// True is returned if the data should be saved and false if the data should not be saved
+        /// </summary>
+        /// <returns></returns>
+        private bool SaveOrNot()
+        {
+            if (MessageBox.Show("Do you want to save the current work?", "Save", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Tries to save the current file
+        /// If the file haven't been saved before the user will be given the option to save the file by namning it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.SaveFile();
+        }
+
+        /// <summary>
+        /// The user will be given the option to save the current work into any location on their computer with a given name
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.SaveFileAs();
+        }
+
+        /// <summary>
+        /// The Application closes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (SaveOrNot())
+            {
+                controller.SaveFile();
+            }
+            Close();
         }
     }
 }

@@ -11,7 +11,8 @@ namespace Data_Access_Layer__DAL_
     /// Daniel Petersén
     /// 2018-09-09
     /// </summary>
-    public abstract class Building : Address, ICloneable
+    [Serializable]
+    public abstract class Building : Address
     {
         /// <summary>
         /// Delecering necessary variables
@@ -39,9 +40,9 @@ namespace Data_Access_Layer__DAL_
         /// Used to clone the obect
         /// </summary>
         /// <returns></returns>
-        public object Clone()
+        /*public object Clone()
         {
             return MemberwiseClone();
-        }
+        }*/
     }
 }

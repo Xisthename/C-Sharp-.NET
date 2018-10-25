@@ -14,11 +14,9 @@ namespace Business_Logics_Layer
     /// </summary>
     public class BuildingManager : ListManager<Building>
     {
-        private IDManager iDManager = new IDManager();
-
         public String GenerateID()
         {
-            return iDManager.GenerateUniqueID();
+            return IDManager.GenerateUniqueID();
         }
 
         public int GetIndexFromID(String id)

@@ -43,8 +43,10 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.buildningHeaderBox = new System.Windows.Forms.GroupBox();
+            this.insertButton = new System.Windows.Forms.Button();
             this.imageLabel = new System.Windows.Forms.Label();
             this.clearImageButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
             this.displayImage = new System.Windows.Forms.PictureBox();
             this.imagebutton = new System.Windows.Forms.Button();
             this.legalBox = new System.Windows.Forms.GroupBox();
@@ -65,8 +67,23 @@
             this.cityLabel = new System.Windows.Forms.Label();
             this.countriesComboBox = new System.Windows.Forms.ComboBox();
             this.CountryLabel = new System.Windows.Forms.Label();
-            this.editButton = new System.Windows.Forms.Button();
             this.searchButton = new System.Windows.Forms.Button();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importFromXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SearchBox = new System.Windows.Forms.GroupBox();
+            this.searchCityTextBox = new System.Windows.Forms.TextBox();
+            this.searchCityLabel = new System.Windows.Forms.Label();
+            this.searchTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.searchTypeLabel = new System.Windows.Forms.Label();
+            this.ResetSearchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.buildningHeaderBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayImage)).BeginInit();
@@ -74,6 +91,8 @@
             this.typeBox.SuspendLayout();
             this.categoryBox.SuspendLayout();
             this.AddressBox.SuspendLayout();
+            this.menuStrip.SuspendLayout();
+            this.SearchBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // table
@@ -102,7 +121,7 @@
             this.ColumnType,
             this.ColumnLegalType,
             this.ColumnImage});
-            this.table.Location = new System.Drawing.Point(12, 14);
+            this.table.Location = new System.Drawing.Point(12, 31);
             this.table.MultiSelect = false;
             this.table.Name = "table";
             this.table.ReadOnly = true;
@@ -111,7 +130,7 @@
             this.table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.table.RowTemplate.Height = 64;
             this.table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.table.Size = new System.Drawing.Size(1200, 665);
+            this.table.Size = new System.Drawing.Size(1200, 701);
             this.table.TabIndex = 17;
             // 
             // ColumnID
@@ -206,9 +225,9 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(1218, 561);
+            this.removeButton.Location = new System.Drawing.Point(168, 517);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(694, 45);
+            this.removeButton.Size = new System.Drawing.Size(181, 30);
             this.removeButton.TabIndex = 18;
             this.removeButton.Text = "Remove Selected Building";
             this.removeButton.UseVisualStyleBackColor = true;
@@ -218,7 +237,7 @@
             // 
             this.addButton.Location = new System.Drawing.Point(6, 481);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(170, 45);
+            this.addButton.Size = new System.Drawing.Size(147, 30);
             this.addButton.TabIndex = 19;
             this.addButton.Text = "Add Building";
             this.addButton.UseVisualStyleBackColor = true;
@@ -226,8 +245,10 @@
             // 
             // buildningHeaderBox
             // 
+            this.buildningHeaderBox.Controls.Add(this.insertButton);
             this.buildningHeaderBox.Controls.Add(this.imageLabel);
             this.buildningHeaderBox.Controls.Add(this.clearImageButton);
+            this.buildningHeaderBox.Controls.Add(this.removeButton);
             this.buildningHeaderBox.Controls.Add(this.editButton);
             this.buildningHeaderBox.Controls.Add(this.displayImage);
             this.buildningHeaderBox.Controls.Add(this.imagebutton);
@@ -236,12 +257,22 @@
             this.buildningHeaderBox.Controls.Add(this.typeBox);
             this.buildningHeaderBox.Controls.Add(this.categoryBox);
             this.buildningHeaderBox.Controls.Add(this.AddressBox);
-            this.buildningHeaderBox.Location = new System.Drawing.Point(1218, 14);
+            this.buildningHeaderBox.Location = new System.Drawing.Point(1218, 31);
             this.buildningHeaderBox.Name = "buildningHeaderBox";
-            this.buildningHeaderBox.Size = new System.Drawing.Size(360, 541);
+            this.buildningHeaderBox.Size = new System.Drawing.Size(360, 560);
             this.buildningHeaderBox.TabIndex = 24;
             this.buildningHeaderBox.TabStop = false;
-            this.buildningHeaderBox.Text = "Add or Edit Buildning";
+            this.buildningHeaderBox.Text = "Add, Edit, Insert or Remove Buildings";
+            // 
+            // insertButton
+            // 
+            this.insertButton.Location = new System.Drawing.Point(6, 517);
+            this.insertButton.Name = "insertButton";
+            this.insertButton.Size = new System.Drawing.Size(147, 30);
+            this.insertButton.TabIndex = 27;
+            this.insertButton.Text = "Insert Building";
+            this.insertButton.UseVisualStyleBackColor = true;
+            this.insertButton.Click += new System.EventHandler(this.insertButton_Click);
             // 
             // imageLabel
             // 
@@ -263,6 +294,16 @@
             this.clearImageButton.UseVisualStyleBackColor = true;
             this.clearImageButton.Click += new System.EventHandler(this.clearImageButton_Click);
             // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(168, 481);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(181, 30);
+            this.editButton.TabIndex = 33;
+            this.editButton.Text = "Edit Selected Building";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            // 
             // displayImage
             // 
             this.displayImage.Location = new System.Drawing.Point(270, 390);
@@ -275,7 +316,7 @@
             // 
             this.imagebutton.Location = new System.Drawing.Point(6, 390);
             this.imagebutton.Name = "imagebutton";
-            this.imagebutton.Size = new System.Drawing.Size(243, 45);
+            this.imagebutton.Size = new System.Drawing.Size(243, 44);
             this.imagebutton.TabIndex = 32;
             this.imagebutton.Text = "Select an Image";
             this.imagebutton.UseVisualStyleBackColor = true;
@@ -456,36 +497,168 @@
             this.CountryLabel.TabIndex = 21;
             this.CountryLabel.Text = "Country:";
             // 
-            // editButton
-            // 
-            this.editButton.Location = new System.Drawing.Point(185, 481);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(170, 45);
-            this.editButton.TabIndex = 33;
-            this.editButton.Text = "Edit Selected Building";
-            this.editButton.UseVisualStyleBackColor = true;
-            this.editButton.Click += new System.EventHandler(this.editButton_Click);
-            // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(1651, 238);
+            this.searchButton.Location = new System.Drawing.Point(168, 92);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(163, 30);
+            this.searchButton.Size = new System.Drawing.Size(181, 30);
             this.searchButton.TabIndex = 25;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFile});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(1587, 28);
+            this.menuStrip.TabIndex = 26;
+            this.menuStrip.Text = "menuStrip1";
+            // 
+            // menuFile
+            // 
+            this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
+            this.xMLToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.menuFile.Name = "menuFile";
+            this.menuFile.Size = new System.Drawing.Size(44, 24);
+            this.menuFile.Text = "File";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.saveAsToolStripMenuItem.Text = "Save as";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
+            // xMLToolStripMenuItem
+            // 
+            this.xMLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importFromXMLToolStripMenuItem,
+            this.exportToXMLToolStripMenuItem});
+            this.xMLToolStripMenuItem.Name = "xMLToolStripMenuItem";
+            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.xMLToolStripMenuItem.Text = "XML";
+            // 
+            // importFromXMLToolStripMenuItem
+            // 
+            this.importFromXMLToolStripMenuItem.Name = "importFromXMLToolStripMenuItem";
+            this.importFromXMLToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.importFromXMLToolStripMenuItem.Text = "Import from XML File";
+            // 
+            // exportToXMLToolStripMenuItem
+            // 
+            this.exportToXMLToolStripMenuItem.Name = "exportToXMLToolStripMenuItem";
+            this.exportToXMLToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.exportToXMLToolStripMenuItem.Text = "Export to XML File";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // SearchBox
+            // 
+            this.SearchBox.Controls.Add(this.ResetSearchButton);
+            this.SearchBox.Controls.Add(this.searchTypeLabel);
+            this.SearchBox.Controls.Add(this.searchTypeComboBox);
+            this.SearchBox.Controls.Add(this.searchCityTextBox);
+            this.SearchBox.Controls.Add(this.searchButton);
+            this.SearchBox.Controls.Add(this.searchCityLabel);
+            this.SearchBox.Location = new System.Drawing.Point(1218, 597);
+            this.SearchBox.Name = "SearchBox";
+            this.SearchBox.Size = new System.Drawing.Size(360, 135);
+            this.SearchBox.TabIndex = 29;
+            this.SearchBox.TabStop = false;
+            this.SearchBox.Text = "Search after Buildings";
+            // 
+            // searchCityTextBox
+            // 
+            this.searchCityTextBox.Location = new System.Drawing.Point(96, 32);
+            this.searchCityTextBox.MaxLength = 30;
+            this.searchCityTextBox.Name = "searchCityTextBox";
+            this.searchCityTextBox.Size = new System.Drawing.Size(253, 22);
+            this.searchCityTextBox.TabIndex = 24;
+            // 
+            // searchCityLabel
+            // 
+            this.searchCityLabel.AutoSize = true;
+            this.searchCityLabel.Location = new System.Drawing.Point(12, 32);
+            this.searchCityLabel.Name = "searchCityLabel";
+            this.searchCityLabel.Size = new System.Drawing.Size(35, 17);
+            this.searchCityLabel.TabIndex = 23;
+            this.searchCityLabel.Text = "City:";
+            // 
+            // searchTypeComboBox
+            // 
+            this.searchTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchTypeComboBox.FormattingEnabled = true;
+            this.searchTypeComboBox.Location = new System.Drawing.Point(96, 62);
+            this.searchTypeComboBox.Name = "searchTypeComboBox";
+            this.searchTypeComboBox.Size = new System.Drawing.Size(253, 24);
+            this.searchTypeComboBox.TabIndex = 23;
+            // 
+            // searchTypeLabel
+            // 
+            this.searchTypeLabel.AutoSize = true;
+            this.searchTypeLabel.Location = new System.Drawing.Point(12, 65);
+            this.searchTypeLabel.Name = "searchTypeLabel";
+            this.searchTypeLabel.Size = new System.Drawing.Size(44, 17);
+            this.searchTypeLabel.TabIndex = 23;
+            this.searchTypeLabel.Text = "Type:";
+            // 
+            // ResetSearchButton
+            // 
+            this.ResetSearchButton.Location = new System.Drawing.Point(6, 92);
+            this.ResetSearchButton.Name = "ResetSearchButton";
+            this.ResetSearchButton.Size = new System.Drawing.Size(147, 30);
+            this.ResetSearchButton.TabIndex = 26;
+            this.ResetSearchButton.Text = "Reset Search";
+            this.ResetSearchButton.UseVisualStyleBackColor = true;
+            this.ResetSearchButton.Click += new System.EventHandler(this.ResetSearchButton_Click);
             // 
             // HomesForSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1924, 693);
-            this.Controls.Add(this.searchButton);
+            this.ClientSize = new System.Drawing.Size(1587, 733);
+            this.Controls.Add(this.SearchBox);
             this.Controls.Add(this.buildningHeaderBox);
             this.Controls.Add(this.table);
-            this.Controls.Add(this.removeButton);
+            this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "HomesForSale";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Homes for Sale";
@@ -502,7 +675,12 @@
             this.categoryBox.PerformLayout();
             this.AddressBox.ResumeLayout(false);
             this.AddressBox.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
+            this.SearchBox.ResumeLayout(false);
+            this.SearchBox.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -544,6 +722,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLegalType;
         private System.Windows.Forms.DataGridViewImageColumn ColumnImage;
         private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem menuFile;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importFromXMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToXMLToolStripMenuItem;
+        private System.Windows.Forms.Button insertButton;
+        private System.Windows.Forms.GroupBox SearchBox;
+        private System.Windows.Forms.TextBox searchCityTextBox;
+        private System.Windows.Forms.Label searchCityLabel;
+        private System.Windows.Forms.ComboBox searchTypeComboBox;
+        private System.Windows.Forms.Label searchTypeLabel;
+        private System.Windows.Forms.Button ResetSearchButton;
     }
 }
 

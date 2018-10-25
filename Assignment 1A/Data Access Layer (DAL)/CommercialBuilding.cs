@@ -10,6 +10,7 @@ namespace Data_Access_Layer__DAL_
     /// Daniel Petersén
     /// 2018-09-09
     /// </summary>
+    [Serializable]
     public class CommercialBuilding : Building
     {
         /// <summary>

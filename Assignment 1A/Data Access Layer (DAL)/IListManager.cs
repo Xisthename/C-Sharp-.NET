@@ -11,6 +11,7 @@ namespace Data_Access_Layer__DAL_
         int Count { get; }
 
         bool Add(T type);
+        bool InsertAt(int index, T type);
         bool EditAt(int id, T type);
         bool CheckIndex(int id);
         void DeleteAll();

@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -84,6 +86,10 @@
     <ProjectReference Include="..\Business Logics Layer\Business Logics Layer %28BLL%29.csproj">
       <Project>{088835f1-6a58-49ca-a7a2-c86dc6027807}</Project>
       <Name>Business Logics Layer %28BLL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data Access Layer %28DAL%29\Data Access Layer %28DAL%29.csproj">
+      <Project>{bc40bd3b-9b50-4182-a6fc-cfecebab2ceb}</Project>
+      <Name>Data Access Layer %28DAL%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

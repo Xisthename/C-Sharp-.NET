@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,12 @@ namespace Business_Logics_Layer
         /// <summary>
         /// Delecering necessary variables
         /// </summary>
-        private DataGridView table;
         private BuildingManager buildingManager = new BuildingManager();
+        private DataGridView table;
         private int index;
+        private SaveFileDialog saveDialog = new SaveFileDialog();
+        private OpenFileDialog openDialog = new OpenFileDialog();
+        private String fileName;
 
         /// <summary>
         /// Constructor that takes in the DataGridView table which is later used to display objects of buildings
@@ -39,6 +43,13 @@ namespace Business_Logics_Layer
         {
             newBuilding.ID = buildingManager.GenerateID();
             return buildingManager.Add(newBuilding);
+        }
+
+
+        internal bool InsertBuildingAt(int index, Building newBuilding)
+        {
+            newBuilding.ID = buildingManager.GenerateID();
+            return buildingManager.InsertAt(index, newBuilding);
         }
 
         /// <summary>
@@ -68,6 +79,12 @@ namespace Business_Logics_Layer
             return false;
         }
 
+        /// <summary>
+        /// returns true if the buildingID is found in the list and the index place in the list of this building will be stored 
+        /// otherwise the index will be set to -1 and return false
+        /// </summary>
+        /// <param name="buildingID"></param>
+        /// <returns></returns>
         private bool CheckID(String buildingID)
         {
             index = buildingManager.GetIndexFromID(buildingID);
@@ -77,6 +94,64 @@ namespace Business_Logics_Layer
                 return true;
             }
             return false;
+        }
+
+
+        public void NewFile(bool save)
+        {
+            if (save) 
+            {
+                SaveFile();
+            }
+            buildingManager.DeleteAll();
+            ClearTable();
+            fileName = null;
+        }
+
+        public void OpenFile(bool save)
+        {
+            if (save)
+            {
+                SaveFile();
+            }
+            openDialog.Filter = "|*.bin";
+            openDialog.Title = "Open a file";
+
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                fileName = openDialog.FileName;
+                buildingManager.DeleteAll();
+                buildingManager.BinaryDeSerialization(fileName);
+                UpdateTable();
+            }
+        }
+
+        public void SaveFile()
+        {
+            if (String.IsNullOrEmpty(fileName))
+            {
+                SaveFileAs();
+            }
+            else
+            {
+                buildingManager.BinarySerialization(fileName);
+            }
+        }
+
+        public void SaveFileAs()
+        {
+            saveDialog = new SaveFileDialog();
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                fileName = saveDialog.FileName;
+
+                if (!fileName.Contains(".bin")) // Adds ".bin" if the filename dosen't already contain it
+                {
+                    fileName += ".bin";
+                }
+                buildingManager.BinarySerialization(fileName);
+            }
         }
 
         /// <summary>

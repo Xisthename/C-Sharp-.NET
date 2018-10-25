@@ -68,7 +68,7 @@ namespace Business_Logics_Layer
         /// <summary>
         /// Changes the building's type alternatives
         /// </summary>
-        public static string[] ChangeBuildingType(int isCommercialBuilding)
+        public static string[] GetBuildingTypes(int isCommercialBuilding)
         {
             selectedindex = isCommercialBuilding;
             string[] buildingType;
@@ -82,6 +82,14 @@ namespace Business_Logics_Layer
                 buildingType = Enum.GetNames(typeof(CommercialType));
             }
             return buildingType;
+        }
+
+        public static string[] GetBothBuildingTypes()
+        {
+            List<String> typeList = new List<String>();
+            typeList.AddRange(Enum.GetNames(typeof(ResidentialType)));
+            typeList.AddRange(Enum.GetNames(typeof(CommercialType)));
+            return typeList.ToArray();
         }
 
         /// <summary>
@@ -265,11 +273,28 @@ namespace Business_Logics_Layer
         }
 
         /// <summary>
+        /// Inserts a new building object into the list at a given index place
+        /// </summary>
+        public void InsertBuilding(int index)
+        {
+            if (controller.InsertBuildingAt(index, tempBuilding))
+            {
+                controller.UpdateTable();
+            }
+            else
+            {
+                MessageBox.Show("Unkown Error! Could not insert a building");
+            }
+        }
+
+        /// <summary>
         /// Edits an existing building object's fields in a list with the given ID to this temporary building object
         /// </summary>
         /// <param name="buildingID"></param>
         public void EditBuilding(String buildingID)
         {
+            tempBuilding.ID = buildingID;
+
             if (controller.EditBuilding(buildingID, tempBuilding))
             {
                 controller.UpdateTable();
@@ -280,6 +305,10 @@ namespace Business_Logics_Layer
             }
         }
 
+        /// <summary>
+        /// Tries to remove a building with a certain building ID  
+        /// </summary>
+        /// <param name="buildingID"></param>
         public void RemoveBuildingWithID(String buildingID)
         {
             if (controller.RemoveBuildingWithID(buildingID))
