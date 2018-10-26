@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace Data_Access_Layer__DAL_
 {
+    /// <summary>
+    /// Daniel Petersén
+    /// 2018-10-14
+    /// </summary>
+
+    /// <summary>
+    /// Delecering a general interface with variables and methods
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     interface IListManager<T>
     {
         int Count { get; }

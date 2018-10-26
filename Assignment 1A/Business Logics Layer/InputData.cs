@@ -84,9 +84,14 @@ namespace Business_Logics_Layer
             return buildingType;
         }
 
+        /// <summary>
+        /// Gets all the diffrent types that a building can be
+        /// </summary>
+        /// <returns></returns>
         public static string[] GetBothBuildingTypes()
         {
-            List<String> typeList = new List<String>();
+            List<string> typeList = new List<string>();
+            typeList.Add("");
             typeList.AddRange(Enum.GetNames(typeof(ResidentialType)));
             typeList.AddRange(Enum.GetNames(typeof(CommercialType)));
             return typeList.ToArray();
@@ -159,7 +164,7 @@ namespace Business_Logics_Layer
         /// <param name="zipcode"></param>
         /// <param name="legalComboBox"></param>
         /// <returns></returns>
-        public bool ReadBuildningInput(ComboBox typeComboBox, ComboBox countriesComboBox, String city, String street, String zipcode, ComboBox legalComboBox)
+        public bool ReadBuildningInput(ComboBox typeComboBox, ComboBox countriesComboBox, string city, string street, string zipcode, ComboBox legalComboBox)
         {
             if (selectedindex == 1)
             {
@@ -187,7 +192,7 @@ namespace Business_Logics_Layer
         /// </summary>
         /// <param name="city"></param>
         /// <returns></returns>
-        private bool CheckBuildingCity(String city)
+        private bool CheckBuildingCity(string city)
         {
             if (!String.IsNullOrEmpty(city))
             {
@@ -204,7 +209,7 @@ namespace Business_Logics_Layer
         /// </summary>
         /// <param name="street"></param>
         /// <returns></returns>
-        private bool CheckBuildingStreet(String street)
+        private bool CheckBuildingStreet(string street)
         {
             if (!String.IsNullOrEmpty(street))
             {
@@ -221,7 +226,7 @@ namespace Business_Logics_Layer
         /// </summary>
         /// <param name="zipCode"></param>
         /// <returns></returns>
-        private bool CheckBuildingZipCode(String zipCode)
+        private bool CheckBuildingZipCode(string zipCode)
         {
             if (zipCode.Length == 5)
             {
@@ -246,15 +251,6 @@ namespace Business_Logics_Layer
             }
             DisplayTryAgainMessage("Please select an image for the buildning");
             return false;
-        }
-
-        /// <summary>
-        /// Used to display an error message to the user
-        /// </summary>
-        /// <param name="errorText"></param>
-        private void DisplayTryAgainMessage(String errorText)
-        {
-            MessageBox.Show(errorText + " and try again!");
         }
 
         /// <summary>
@@ -291,7 +287,7 @@ namespace Business_Logics_Layer
         /// Edits an existing building object's fields in a list with the given ID to this temporary building object
         /// </summary>
         /// <param name="buildingID"></param>
-        public void EditBuilding(String buildingID)
+        public void EditBuilding(string buildingID)
         {
             tempBuilding.ID = buildingID;
 
@@ -309,7 +305,7 @@ namespace Business_Logics_Layer
         /// Tries to remove a building with a certain building ID  
         /// </summary>
         /// <param name="buildingID"></param>
-        public void RemoveBuildingWithID(String buildingID)
+        public void RemoveBuildingWithID(string buildingID)
         {
             if (controller.RemoveBuildingWithID(buildingID))
             {
@@ -319,6 +315,34 @@ namespace Business_Logics_Layer
             {
                 MessageBox.Show("Unkown Error! Could not remove the selected building");
             }
+        }
+
+        /// <summary>
+        /// Tries to search after buildings in a city and/or for a certain building type
+        /// </summary>
+        /// <param name="city"></param>
+        /// <param name="BuildingType"></param>
+        public void Search(string city, string BuildingType)
+        {
+            if (String.IsNullOrEmpty(city) && String.IsNullOrEmpty(BuildingType))
+            {
+                DisplayTryAgainMessage("Fill in something to search after");
+            }
+            else
+            {
+                city = city.ToLower();
+                BuildingType = BuildingType.ToLower();
+                controller.Search(city, BuildingType);
+            }
+        }
+
+        /// <summary>
+        /// Used to display an error message to the user
+        /// </summary>
+        /// <param name="errorText"></param>
+        private void DisplayTryAgainMessage(string errorText)
+        {
+            MessageBox.Show(errorText + " and try again!");
         }
     }
 }

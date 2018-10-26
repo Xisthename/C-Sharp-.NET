@@ -24,25 +24,13 @@ namespace Data_Access_Layer__DAL_
         public abstract String BuildingType { get; set; }
 
         /// <summary>
-        /// Empty Constructor
+        /// Returns all the fields of the object to a string
         /// </summary>
-        public Building()
-        {
-        }
-
+        /// <returns></returns>
         public override String ToString()
         {
             return ID + ", " + GetCountry() + ", " + City + ", " + Street + ", " + ZipCode + ", " + GetBuildingCategory() + ", " 
                 + BuildingType + ", " + LegalType.ToString();
         }
-
-        /// <summary>
-        /// Used to clone the obect
-        /// </summary>
-        /// <returns></returns>
-        /*public object Clone()
-        {
-            return MemberwiseClone();
-        }*/
     }
 }

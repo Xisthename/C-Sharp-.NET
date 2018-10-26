@@ -79,11 +79,11 @@
             this.exportToXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SearchBox = new System.Windows.Forms.GroupBox();
+            this.ResetSearchButton = new System.Windows.Forms.Button();
+            this.searchTypeLabel = new System.Windows.Forms.Label();
+            this.searchTypeComboBox = new System.Windows.Forms.ComboBox();
             this.searchCityTextBox = new System.Windows.Forms.TextBox();
             this.searchCityLabel = new System.Windows.Forms.Label();
-            this.searchTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.searchTypeLabel = new System.Windows.Forms.Label();
-            this.ResetSearchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.buildningHeaderBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayImage)).BeginInit();
@@ -130,7 +130,7 @@
             this.table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.table.RowTemplate.Height = 64;
             this.table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.table.Size = new System.Drawing.Size(1200, 701);
+            this.table.Size = new System.Drawing.Size(1240, 700);
             this.table.TabIndex = 17;
             // 
             // ColumnID
@@ -229,7 +229,7 @@
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(181, 30);
             this.removeButton.TabIndex = 18;
-            this.removeButton.Text = "Remove Selected Building";
+            this.removeButton.Text = "Remove Selected";
             this.removeButton.UseVisualStyleBackColor = true;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
@@ -257,7 +257,7 @@
             this.buildningHeaderBox.Controls.Add(this.typeBox);
             this.buildningHeaderBox.Controls.Add(this.categoryBox);
             this.buildningHeaderBox.Controls.Add(this.AddressBox);
-            this.buildningHeaderBox.Location = new System.Drawing.Point(1218, 31);
+            this.buildningHeaderBox.Location = new System.Drawing.Point(1258, 31);
             this.buildningHeaderBox.Name = "buildningHeaderBox";
             this.buildningHeaderBox.Size = new System.Drawing.Size(360, 560);
             this.buildningHeaderBox.TabIndex = 24;
@@ -514,7 +514,7 @@
             this.menuFile});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1587, 28);
+            this.menuStrip.Size = new System.Drawing.Size(1665, 28);
             this.menuStrip.TabIndex = 26;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -534,28 +534,28 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.saveAsToolStripMenuItem.Text = "Save as";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -565,7 +565,7 @@
             this.importFromXMLToolStripMenuItem,
             this.exportToXMLToolStripMenuItem});
             this.xMLToolStripMenuItem.Name = "xMLToolStripMenuItem";
-            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.xMLToolStripMenuItem.Text = "XML";
             // 
             // importFromXMLToolStripMenuItem
@@ -583,7 +583,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -595,12 +595,40 @@
             this.SearchBox.Controls.Add(this.searchCityTextBox);
             this.SearchBox.Controls.Add(this.searchButton);
             this.SearchBox.Controls.Add(this.searchCityLabel);
-            this.SearchBox.Location = new System.Drawing.Point(1218, 597);
+            this.SearchBox.Location = new System.Drawing.Point(1258, 597);
             this.SearchBox.Name = "SearchBox";
             this.SearchBox.Size = new System.Drawing.Size(360, 135);
             this.SearchBox.TabIndex = 29;
             this.SearchBox.TabStop = false;
             this.SearchBox.Text = "Search after Buildings";
+            // 
+            // ResetSearchButton
+            // 
+            this.ResetSearchButton.Location = new System.Drawing.Point(6, 92);
+            this.ResetSearchButton.Name = "ResetSearchButton";
+            this.ResetSearchButton.Size = new System.Drawing.Size(147, 30);
+            this.ResetSearchButton.TabIndex = 26;
+            this.ResetSearchButton.Text = "Reset Search";
+            this.ResetSearchButton.UseVisualStyleBackColor = true;
+            this.ResetSearchButton.Click += new System.EventHandler(this.ResetSearchButton_Click);
+            // 
+            // searchTypeLabel
+            // 
+            this.searchTypeLabel.AutoSize = true;
+            this.searchTypeLabel.Location = new System.Drawing.Point(12, 65);
+            this.searchTypeLabel.Name = "searchTypeLabel";
+            this.searchTypeLabel.Size = new System.Drawing.Size(44, 17);
+            this.searchTypeLabel.TabIndex = 23;
+            this.searchTypeLabel.Text = "Type:";
+            // 
+            // searchTypeComboBox
+            // 
+            this.searchTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchTypeComboBox.FormattingEnabled = true;
+            this.searchTypeComboBox.Location = new System.Drawing.Point(96, 62);
+            this.searchTypeComboBox.Name = "searchTypeComboBox";
+            this.searchTypeComboBox.Size = new System.Drawing.Size(253, 24);
+            this.searchTypeComboBox.TabIndex = 23;
             // 
             // searchCityTextBox
             // 
@@ -619,40 +647,12 @@
             this.searchCityLabel.TabIndex = 23;
             this.searchCityLabel.Text = "City:";
             // 
-            // searchTypeComboBox
-            // 
-            this.searchTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.searchTypeComboBox.FormattingEnabled = true;
-            this.searchTypeComboBox.Location = new System.Drawing.Point(96, 62);
-            this.searchTypeComboBox.Name = "searchTypeComboBox";
-            this.searchTypeComboBox.Size = new System.Drawing.Size(253, 24);
-            this.searchTypeComboBox.TabIndex = 23;
-            // 
-            // searchTypeLabel
-            // 
-            this.searchTypeLabel.AutoSize = true;
-            this.searchTypeLabel.Location = new System.Drawing.Point(12, 65);
-            this.searchTypeLabel.Name = "searchTypeLabel";
-            this.searchTypeLabel.Size = new System.Drawing.Size(44, 17);
-            this.searchTypeLabel.TabIndex = 23;
-            this.searchTypeLabel.Text = "Type:";
-            // 
-            // ResetSearchButton
-            // 
-            this.ResetSearchButton.Location = new System.Drawing.Point(6, 92);
-            this.ResetSearchButton.Name = "ResetSearchButton";
-            this.ResetSearchButton.Size = new System.Drawing.Size(147, 30);
-            this.ResetSearchButton.TabIndex = 26;
-            this.ResetSearchButton.Text = "Reset Search";
-            this.ResetSearchButton.UseVisualStyleBackColor = true;
-            this.ResetSearchButton.Click += new System.EventHandler(this.ResetSearchButton_Click);
-            // 
             // HomesForSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1587, 733);
+            this.ClientSize = new System.Drawing.Size(1665, 733);
             this.Controls.Add(this.SearchBox);
             this.Controls.Add(this.buildningHeaderBox);
             this.Controls.Add(this.table);

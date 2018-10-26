@@ -22,7 +22,7 @@ namespace Data_Access_Layer__DAL_
         public String ZipCode { get; set; }
 
         /// <summary>
-        /// Returns the country to a string and fixes spaces
+        /// Returns the country to a string and adds spaces were it is necessary
         /// </summary>
         /// <returns></returns>
         public String GetCountry()

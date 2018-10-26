@@ -72,7 +72,9 @@ namespace Assignment_1
             cityTextBox.ResetText();
             streetTextBox.ResetText();
             zipCodeTextBox.ResetText();
+            searchCityTextBox.ResetText();
             ClearChosenImage();
+            controller.ResetSearch();
             InitGUI();
         }
 
@@ -178,7 +180,7 @@ namespace Assignment_1
             {
                 if (InputDataIsCorrect())
                 {
-                    String buildingID = table.SelectedCells[0].Value.ToString();
+                    string buildingID = table.SelectedCells[0].Value.ToString();
                     inputData.EditBuilding(buildingID);
                 }
             }
@@ -211,7 +213,7 @@ namespace Assignment_1
         {
             if (table.SelectedRows.Count > 0)
             {
-                String buildingID = table.SelectedCells[0].Value.ToString();
+                string buildingID = table.SelectedCells[0].Value.ToString();
                 inputData.RemoveBuildingWithID(buildingID);
             }
             else
@@ -220,15 +222,19 @@ namespace Assignment_1
             }
         }
 
-
-        private void searchButton_Click(object sender, EventArgs e) // TODO
+        /// <summary>
+        /// Tries to search after buildings in a city and what kind of building it is
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void searchButton_Click(object sender, EventArgs e)
         {
-
+            inputData.Search(searchCityTextBox.Text, searchTypeComboBox.GetItemText(searchTypeComboBox.SelectedItem));
         }
 
         private void ResetSearchButton_Click(object sender, EventArgs e)
         {
-
+            controller.ResetSearch();
         }
 
         /// <summary>
@@ -261,7 +267,7 @@ namespace Assignment_1
         /// <summary>
         /// Starts off with asking the user if the current work should be saved
         /// The return of this is then cast into the datacontroller object where the data is saved or not
-        /// Finally a file is loaded and the current list of objects are updated to the files data
+        /// Finally the user gets the option to open a file and if a file is loaded then all it's buildings will be visible
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -306,7 +312,7 @@ namespace Assignment_1
         }
 
         /// <summary>
-        /// The Application closes
+        /// Asks the user if the want to save their work before the application closes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
