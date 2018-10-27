@@ -24,7 +24,7 @@ namespace Business_Logics_Layer
         private int index;
         private SaveFileDialog saveDialog = new SaveFileDialog();
         private OpenFileDialog openDialog = new OpenFileDialog();
-        private string fileName;
+        private string filePath;
         private bool searchedAfterBuildings = false;
 
         /// <summary>
@@ -34,6 +34,9 @@ namespace Business_Logics_Layer
         public DataController(DataGridView table)
         {
             this.table = table;
+            openDialog.Filter = "Data Files (*.dat)|*.dat";
+            openDialog.Title = "Open a file";
+            saveDialog.AddExtension = true;
         }
 
         /// <summary>
@@ -138,7 +141,7 @@ namespace Business_Logics_Layer
             }
             buildingManager.DeleteAll();
             ClearTable();
-            fileName = null;
+            filePath = null;
         }
 
         /// <summary>
@@ -152,14 +155,12 @@ namespace Business_Logics_Layer
             {
                 SaveFile();
             }
-            openDialog.Filter = "|*.bin";
-            openDialog.Title = "Open a file";
 
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
-                fileName = openDialog.FileName;
+                filePath = openDialog.FileName;
                 buildingManager.DeleteAll();
-                buildingManager.BinaryDeSerialization(fileName);
+                buildingManager.BinaryDeSerialization(filePath);
                 UpdateTable();
             }
         }
@@ -171,13 +172,13 @@ namespace Business_Logics_Layer
         /// </summary>
         public void SaveFile()
         {
-            if (String.IsNullOrEmpty(fileName))
+            if (String.IsNullOrEmpty(filePath))
             {
-                SaveFileAs();
+                SaveFileAs(false);
             }
             else
             {
-                buildingManager.BinarySerialization(fileName);
+                buildingManager.BinarySerialization(filePath);
             }
         }
 
@@ -186,19 +187,38 @@ namespace Business_Logics_Layer
         /// The user must put in a name of the file and choose a place on the computer where the file should be saved
         /// The user has of course the option of exiting without saving the data
         /// </summary>
-        public void SaveFileAs()
+        public void SaveFileAs(bool saveAsXML)
         {
-            saveDialog = new SaveFileDialog();
-
-            if (saveDialog.ShowDialog() == DialogResult.OK)
+            if (buildingManager.Count > 0)
             {
-                fileName = saveDialog.FileName;
-
-                if (!fileName.Contains(".bin")) // Adds ".bin" if the filename dosen't already contain it
+                if (saveAsXML)
                 {
-                    fileName += ".bin";
+                    saveDialog.Filter = "XML (*.xml)|*.xml";
+                    saveDialog.DefaultExt = ".xml";
                 }
-                buildingManager.BinarySerialization(fileName);
+                else
+                {
+                    saveDialog.Filter = "Data Files (*.dat)|*.dat";
+                    saveDialog.DefaultExt = "dat";
+                }
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = saveDialog.FileName;
+
+                    if (saveAsXML)
+                    {
+                        buildingManager.XMLSerialize(filePath);
+                    }
+                    else
+                    {
+                        buildingManager.BinarySerialization(filePath);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No data is available to save!");
             }
         }
 

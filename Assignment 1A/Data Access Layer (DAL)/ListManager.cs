@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Data_Access_Layer__DAL_
 {
@@ -121,7 +122,7 @@ namespace Data_Access_Layer__DAL_
         /// Returns the buildings data into a string array 
         /// </summary>
         /// <returns></returns>
-        public string[] ToStringArray() // Useless to be honest
+        public string[] ToStringArray()
         {
             return list.ConvertAll(c => c.ToString()).ToArray();
         }
@@ -171,11 +172,29 @@ namespace Data_Access_Layer__DAL_
         /// <summary>
         /// Tries to save the buildings data into an XML file
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="fileName"></param>
         /// <returns></returns>
         public bool XMLSerialize(string fileName)
         {
-            throw new NotImplementedException();
+            bool bok = true;
+
+            TextWriter writer = new StreamWriter(fileName);
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(String[]));
+                serializer.Serialize(writer, ToStringArray());
+            }
+            catch
+            {
+                bok = false;
+            }
+            finally
+            {
+                if (writer != null)
+                    writer.Close();
+            }
+            return bok;
         }
     }
 }

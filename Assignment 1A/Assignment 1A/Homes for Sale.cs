@@ -277,15 +277,18 @@ namespace Assignment_1
         }
 
         /// <summary>
-        /// Asks the user if the current work should be saved or not
+        /// If there are buildings then user gets asked if the current data should be saved or not
         /// True is returned if the data should be saved and false if the data should not be saved
         /// </summary>
         /// <returns></returns>
         private bool SaveOrNot()
         {
-            if (MessageBox.Show("Do you want to save the current work?", "Save", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (table.RowCount != 0)
             {
-                return true;
+                if (MessageBox.Show("Do you want to save the current work?", "Save", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -308,7 +311,12 @@ namespace Assignment_1
         /// <param name="e"></param>
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            controller.SaveFileAs();
+            controller.SaveFileAs(false);
+        }
+
+        private void exportToXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controller.SaveFileAs(true);
         }
 
         /// <summary>

@@ -75,7 +75,6 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importFromXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SearchBox = new System.Windows.Forms.GroupBox();
@@ -562,23 +561,17 @@
             // xMLToolStripMenuItem
             // 
             this.xMLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importFromXMLToolStripMenuItem,
             this.exportToXMLToolStripMenuItem});
             this.xMLToolStripMenuItem.Name = "xMLToolStripMenuItem";
             this.xMLToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.xMLToolStripMenuItem.Text = "XML";
             // 
-            // importFromXMLToolStripMenuItem
-            // 
-            this.importFromXMLToolStripMenuItem.Name = "importFromXMLToolStripMenuItem";
-            this.importFromXMLToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
-            this.importFromXMLToolStripMenuItem.Text = "Import from XML File";
-            // 
             // exportToXMLToolStripMenuItem
             // 
             this.exportToXMLToolStripMenuItem.Name = "exportToXMLToolStripMenuItem";
-            this.exportToXMLToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.exportToXMLToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.exportToXMLToolStripMenuItem.Text = "Export to XML File";
+            this.exportToXMLToolStripMenuItem.Click += new System.EventHandler(this.exportToXMLToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -730,7 +723,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importFromXMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToXMLToolStripMenuItem;
         private System.Windows.Forms.Button insertButton;
         private System.Windows.Forms.GroupBox SearchBox;

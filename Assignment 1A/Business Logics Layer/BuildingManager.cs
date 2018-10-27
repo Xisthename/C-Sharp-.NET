@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Data_Access_Layer__DAL_;
 
 namespace Business_Logics_Layer
@@ -69,15 +70,15 @@ namespace Business_Logics_Layer
 
             if (!String.IsNullOrEmpty(city) && !String.IsNullOrEmpty(buildingType))
             {
-                buildingList = list.FindAll(x => x.City.ToLower().Equals(city) && x.BuildingType.ToString().ToLower().Equals(buildingType));
+                buildingList = list.FindAll(x => x.City.ToLower().Contains(city) && x.BuildingType.ToString().ToLower().Contains(buildingType));
             }
             else if (!String.IsNullOrEmpty(city) && String.IsNullOrEmpty(buildingType))
             {
-                buildingList = list.FindAll(x => x.City.ToLower().Equals(city));
+                buildingList = list.FindAll(x => x.City.ToLower().Contains(city));
             }
             else if (String.IsNullOrEmpty(city) && !String.IsNullOrEmpty(buildingType))
             {
-                buildingList = list.FindAll(x => x.BuildingType.ToString().ToLower().Equals(buildingType));
+                buildingList = list.FindAll(x => x.BuildingType.ToString().ToLower().Contains(buildingType));
             }
             searchedList = buildingList.ConvertAll(c => c.ToString());
         }
