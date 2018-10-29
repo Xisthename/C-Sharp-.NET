@@ -1,0 +1,15 @@
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\bin\Debug\Assignment 1.exe.config
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\bin\Debug\Assignment 1.exe
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\bin\Debug\Assignment 1.pdb
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\bin\Debug\Business Logics Layer.dll
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\bin\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\bin\Debug\Business Logics Layer.pdb
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\bin\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\obj\Debug\Presentation Layer (PL).csprojAssemblyReference.cache
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\obj\Debug\Assignment_1.HomesForSale.resources
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\obj\Debug\Assignment_1.Properties.Resources.resources
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\obj\Debug\Presentation Layer (PL).csproj.GenerateResource.cache
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\obj\Debug\Presentation Layer (PL).csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\obj\Debug\Presentation Layer (PL).csproj.CopyComplete
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\obj\Debug\Assignment 1.exe
+C:\Users\xisth\source\repos\Assignment 1\Assignment 1\obj\Debug\Assignment 1.pdb
