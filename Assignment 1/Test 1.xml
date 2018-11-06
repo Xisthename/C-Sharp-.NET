@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <string>f2h, Sverige, Höllviken, Höllvikstrandsvägen 29A, 23638, Residential, Apartment, Rental</string>
-  <string>6vb, Sverige, Höllviken, Höllvikstrandsvägen 20B, 23638, Residential, House, Ownership</string>
-  <string>02g, Sverige, Höllviken, Höllvikstrandsvägen 10, 23638, Commercial, Warehouse, Tenement</string>
-  <string>a3t, Sverige, Trelleborg, Valldammsgatan 17C, 23143, Residential, Villa, Ownership</string>
-  <string>w5x, Sverige, Trelleborg, Valldammsgatan 3A, 23143, Commercial, Shop, Rental</string>
-  <string>m3o, Sverige, Malmö, Hyregatan 4, 21121, Residential, Apartment, Rental</string>
-</ArrayOfString>

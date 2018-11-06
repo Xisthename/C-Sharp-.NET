@@ -1,0 +1,28 @@
+C:\Users\xisth\source\repos\Assignment 1A\Data Access Layer (DAL)\bin\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 1A\Data Access Layer (DAL)\bin\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 1A\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).csprojAssemblyReference.cache
+C:\Users\xisth\source\repos\Assignment 1A\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 1A\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 1A\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 1\Data Access Layer (DAL)\bin\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 1\Data Access Layer (DAL)\bin\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 1\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).csprojAssemblyReference.cache
+C:\Users\xisth\source\repos\Assignment 1\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 1\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 1\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\Data Access Layer (DAL).dll.config
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\EntityFramework.dll
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\MySql.Data.dll
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\EntityFramework.xml
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\MySql.Data.xml
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\bin\Debug\MySql.Data.Entity.EF6.xml
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).csproj.CopyComplete
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 3\Data Access Layer (DAL)\obj\Debug\Data Access Layer (DAL).csprojAssemblyReference.cache

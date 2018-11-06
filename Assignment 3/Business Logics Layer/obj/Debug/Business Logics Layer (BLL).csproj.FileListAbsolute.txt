@@ -1,0 +1,35 @@
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\bin\Debug\Business Logics Layer.dll
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\bin\Debug\Business Logics Layer.pdb
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\bin\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\bin\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csprojAssemblyReference.cache
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csproj.CopyComplete
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\obj\Debug\Business Logics Layer.dll
+C:\Users\xisth\source\repos\Assignment 1A\Business Logics Layer\obj\Debug\Business Logics Layer.pdb
+C:\Users\xisth\source\repos\Assignment 1\Business Logics Layer\bin\Debug\Business Logics Layer.dll
+C:\Users\xisth\source\repos\Assignment 1\Business Logics Layer\bin\Debug\Business Logics Layer.pdb
+C:\Users\xisth\source\repos\Assignment 1\Business Logics Layer\bin\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 1\Business Logics Layer\bin\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 1\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csprojAssemblyReference.cache
+C:\Users\xisth\source\repos\Assignment 1\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 1\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csproj.CopyComplete
+C:\Users\xisth\source\repos\Assignment 1\Business Logics Layer\obj\Debug\Business Logics Layer.dll
+C:\Users\xisth\source\repos\Assignment 1\Business Logics Layer\obj\Debug\Business Logics Layer.pdb
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\Business Logics Layer.dll.config
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\Business Logics Layer.dll
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\Business Logics Layer.pdb
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\Data Access Layer (DAL).dll
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\EntityFramework.dll
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\MySql.Data.dll
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\Data Access Layer (DAL).pdb
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\Data Access Layer (DAL).dll.config
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\EntityFramework.xml
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\bin\Debug\MySql.Data.xml
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csprojAssemblyReference.cache
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\obj\Debug\Business Logics Layer (BLL).csproj.CopyComplete
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\obj\Debug\Business Logics Layer.dll
+C:\Users\xisth\source\repos\Assignment 3\Business Logics Layer\obj\Debug\Business Logics Layer.pdb
