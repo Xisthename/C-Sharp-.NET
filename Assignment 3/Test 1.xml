@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBuilding xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Building xsi:type="ResidentialBuilding">
+    <Country>Sverige</Country>
+    <City>Malmö</City>
+    <Street>Hyregatan 4</Street>
+    <ZipCode>21121</ZipCode>
+    <BuildingID>c0s</BuildingID>
+    <BuildingType>Apartment</BuildingType>
+    <LegalType>Rental</LegalType>
+    <ResidentialType>House</ResidentialType>
+  </Building>
+  <Building xsi:type="ResidentialBuilding">
+    <Country>Sverige</Country>
+    <City>Höllviken</City>
+    <Street>Höllvikstrandsvägen 29A</Street>
+    <ZipCode>23638</ZipCode>
+    <BuildingID>vzd</BuildingID>
+    <BuildingType>House</BuildingType>
+    <LegalType>Ownership</LegalType>
+    <ResidentialType>House</ResidentialType>
+  </Building>
+</ArrayOfBuilding>

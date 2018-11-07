@@ -78,7 +78,9 @@
             this.ColumnCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnCountry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.table = new System.Windows.Forms.DataGridView();
+            this.localTable = new System.Windows.Forms.DataGridView();
+            this.localTableLabel = new System.Windows.Forms.Label();
+            this.databaseTableLabel = new System.Windows.Forms.Label();
             this.buildningHeaderBox.SuspendLayout();
             this.legalBox.SuspendLayout();
             this.typeBox.SuspendLayout();
@@ -87,7 +89,7 @@
             this.menuStrip.SuspendLayout();
             this.SearchBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localTable)).BeginInit();
             this.SuspendLayout();
             // 
             // removeButton
@@ -124,7 +126,7 @@
             this.buildningHeaderBox.Size = new System.Drawing.Size(360, 470);
             this.buildningHeaderBox.TabIndex = 24;
             this.buildningHeaderBox.TabStop = false;
-            this.buildningHeaderBox.Text = "Add, Edit, Insert or Remove Buildings";
+            this.buildningHeaderBox.Text = "Add, Edit or Remove Buildings";
             // 
             // editButton
             // 
@@ -348,28 +350,28 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.saveAsToolStripMenuItem.Text = "Save as";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -378,7 +380,7 @@
             this.xMLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportToXMLToolStripMenuItem});
             this.xMLToolStripMenuItem.Name = "xMLToolStripMenuItem";
-            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.xMLToolStripMenuItem.Text = "XML";
             // 
             // exportToXMLToolStripMenuItem
@@ -391,7 +393,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -461,7 +463,6 @@
             this.databaseTable.AllowUserToDeleteRows = false;
             this.databaseTable.AllowUserToResizeColumns = false;
             this.databaseTable.AllowUserToResizeRows = false;
-            this.databaseTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.databaseTable.BackgroundColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
@@ -472,7 +473,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.databaseTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.databaseTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.databaseTable.Location = new System.Drawing.Point(12, 298);
+            this.databaseTable.Location = new System.Drawing.Point(12, 367);
             this.databaseTable.MultiSelect = false;
             this.databaseTable.Name = "databaseTable";
             this.databaseTable.ReadOnly = true;
@@ -480,7 +481,7 @@
             this.databaseTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.databaseTable.RowTemplate.Height = 64;
             this.databaseTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.databaseTable.Size = new System.Drawing.Size(1155, 232);
+            this.databaseTable.Size = new System.Drawing.Size(1155, 275);
             this.databaseTable.TabIndex = 30;
             // 
             // ColumnLegalType
@@ -563,13 +564,13 @@
             this.ColumnID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ColumnID.Width = 30;
             // 
-            // table
+            // localTable
             // 
-            this.table.AllowUserToAddRows = false;
-            this.table.AllowUserToDeleteRows = false;
-            this.table.AllowUserToResizeColumns = false;
-            this.table.AllowUserToResizeRows = false;
-            this.table.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.localTable.AllowUserToAddRows = false;
+            this.localTable.AllowUserToDeleteRows = false;
+            this.localTable.AllowUserToResizeColumns = false;
+            this.localTable.AllowUserToResizeRows = false;
+            this.localTable.BackgroundColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -577,9 +578,9 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.table.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.localTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.localTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.localTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnID,
             this.columnCountry,
             this.ColumnCity,
@@ -588,28 +589,52 @@
             this.ColumnCategory,
             this.ColumnType,
             this.ColumnLegalType});
-            this.table.Location = new System.Drawing.Point(12, 31);
-            this.table.MultiSelect = false;
-            this.table.Name = "table";
-            this.table.ReadOnly = true;
-            this.table.RowHeadersVisible = false;
-            this.table.RowHeadersWidth = 20;
-            this.table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.table.RowTemplate.Height = 64;
-            this.table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.table.Size = new System.Drawing.Size(1155, 232);
-            this.table.TabIndex = 17;
+            this.localTable.Location = new System.Drawing.Point(12, 46);
+            this.localTable.MultiSelect = false;
+            this.localTable.Name = "localTable";
+            this.localTable.ReadOnly = true;
+            this.localTable.RowHeadersVisible = false;
+            this.localTable.RowHeadersWidth = 20;
+            this.localTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.localTable.RowTemplate.Height = 64;
+            this.localTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.localTable.Size = new System.Drawing.Size(1155, 275);
+            this.localTable.TabIndex = 17;
+            this.localTable.SelectionChanged += new System.EventHandler(this.localTable_SelectionChanged);
+            // 
+            // localTableLabel
+            // 
+            this.localTableLabel.AutoSize = true;
+            this.localTableLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.localTableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.localTableLabel.Location = new System.Drawing.Point(1004, 11);
+            this.localTableLabel.Name = "localTableLabel";
+            this.localTableLabel.Size = new System.Drawing.Size(163, 32);
+            this.localTableLabel.TabIndex = 31;
+            this.localTableLabel.Text = "Local Table";
+            // 
+            // databaseTableLabel
+            // 
+            this.databaseTableLabel.AutoSize = true;
+            this.databaseTableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.databaseTableLabel.Location = new System.Drawing.Point(951, 332);
+            this.databaseTableLabel.Name = "databaseTableLabel";
+            this.databaseTableLabel.Size = new System.Drawing.Size(216, 32);
+            this.databaseTableLabel.TabIndex = 32;
+            this.databaseTableLabel.Text = "Database Table";
             // 
             // HomesForSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1547, 733);
+            this.ClientSize = new System.Drawing.Size(1547, 652);
+            this.Controls.Add(this.databaseTableLabel);
+            this.Controls.Add(this.localTableLabel);
             this.Controls.Add(this.databaseTable);
             this.Controls.Add(this.SearchBox);
             this.Controls.Add(this.buildningHeaderBox);
-            this.Controls.Add(this.table);
+            this.Controls.Add(this.localTable);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
@@ -631,7 +656,7 @@
             this.SearchBox.ResumeLayout(false);
             this.SearchBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -685,7 +710,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCity;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnCountry;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
-        private System.Windows.Forms.DataGridView table;
+        private System.Windows.Forms.DataGridView localTable;
+        private System.Windows.Forms.Label localTableLabel;
+        private System.Windows.Forms.Label databaseTableLabel;
     }
 }
 

@@ -28,7 +28,7 @@ namespace Assignment_1
         private SaveFileDialog saveDialog = new SaveFileDialog();
         private OpenFileDialog openDialog = new OpenFileDialog();
         private string filePath;
-        private bool savedUpToDate = true;
+        private bool savedUpToDate = false;
 
         public HomesForSale()
         {
@@ -47,9 +47,11 @@ namespace Assignment_1
             openDialog.Filter = "Data Files (*.bin)|*.bin";
             openDialog.Title = "Open a file";
             saveDialog.AddExtension = true;
-            InitGUI();
             databaseTable.DefaultCellStyle.SelectionBackColor = databaseTable.DefaultCellStyle.BackColor;
             databaseTable.DefaultCellStyle.SelectionForeColor = databaseTable.DefaultCellStyle.ForeColor;
+            buildingManager.SetDataFromDatabase();
+            InitGUI();
+            MatchTableColumns();
         }
 
         /// <summary>
@@ -71,8 +73,7 @@ namespace Assignment_1
             searchTypeComboBox.Items.AddRange(InputData.GetBothBuildingTypes());
             searchTypeComboBox.SelectedIndex = 0;
 
-            buildingManager.SetDataFromDatabase();
-            UpdateTable();
+            UpdateTables();
         }
 
         /// <summary>
@@ -88,8 +89,19 @@ namespace Assignment_1
             streetTextBox.ResetText();
             zipCodeTextBox.ResetText();
             searchCityTextBox.ResetText();
-            buildingManager.ResetSearch();
+            buildingManager.SetDisplayList();
             InitGUI();
+        }
+
+        /// <summary>
+        /// Sets the database table columns to the same width as in the local table
+        /// </summary>
+        private void MatchTableColumns()
+        {
+            for (int i = 0; i < databaseTable.Columns.Count; i++)
+            {
+                databaseTable.Columns[i].Width = localTable.Columns[i].Width;
+            }
         }
 
         /// <summary>
@@ -124,45 +136,13 @@ namespace Assignment_1
             {
                 if (inputData.AddBuilding())
                 {
-                    buildingManager.ResetSearch();
-                    UpdateTable();
+                    buildingManager.SetDisplayList();
+                    UpdateTables();
                     savedUpToDate = false;
                 }
                 else
                 {
                     MessageBox.Show("Unkown Error! Could not add a building");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Tries to insert a new buildning and every input that can fail is checked 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void insertButton_Click(object sender, EventArgs e)
-        {
-            if (InputDataIsCorrect())
-            {
-                int index;
-
-                if (table.SelectedRows.Count == 1) // Are there even a building object to edit?
-                {
-                    index = table.CurrentCell.RowIndex;
-                }
-                else
-                {
-                    index = 0;
-                }
-
-                if (inputData.InsertBuilding(index))
-                {
-                    UpdateTable();
-                    savedUpToDate = false;
-                }
-                else
-                {
-                    MessageBox.Show("Unkown Error! Could not insert a building");
                 }
             }
         }
@@ -174,16 +154,16 @@ namespace Assignment_1
         /// <param name="e"></param>
         private void editButton_Click(object sender, EventArgs e)
         {
-            if (table.SelectedRows.Count == 1) // Are there even a building object to edit?
+            if (localTable.SelectedRows.Count == 1) // Are there even a building object to edit?
             {
                 if (InputDataIsCorrect())
                 {
-                    string buildingID = table.SelectedCells[0].Value.ToString();
+                    string buildingID = localTable.SelectedCells[0].Value.ToString();
 
                     if (inputData.EditBuilding(buildingID))
                     {
-                        buildingManager.ResetSearch();
-                        UpdateTable();
+                        buildingManager.SetDisplayList();
+                        UpdateTables();
                         savedUpToDate = false;
                     }
                     else
@@ -209,7 +189,6 @@ namespace Assignment_1
                 return true;
             }
             return false;
-            //ClearChosenImage();
         }
 
         /// <summary>
@@ -219,14 +198,14 @@ namespace Assignment_1
         /// <param name="e"></param>
         private void removeButton_Click(object sender, EventArgs e)
         {
-            if (table.SelectedRows.Count > 0)
+            if (localTable.SelectedRows.Count > 0)
             {
-                string buildingID = table.SelectedCells[0].Value.ToString();
+                string buildingID = localTable.SelectedCells[0].Value.ToString();
 
                 if (inputData.RemoveBuildingWithID(buildingID))
                 {
-                    buildingManager.ResetSearch();
-                    UpdateTable();
+                    buildingManager.SetDisplayList();
+                    UpdateTables();
                     savedUpToDate = false;
                 }
                 else
@@ -248,13 +227,13 @@ namespace Assignment_1
         private void searchButton_Click(object sender, EventArgs e)
         {
             inputData.Search(searchCityTextBox.Text, searchTypeComboBox.GetItemText(searchTypeComboBox.SelectedItem));
-            UpdateTable();
+            UpdateTables();
         }
 
         private void ResetSearchButton_Click(object sender, EventArgs e)
         {
-            buildingManager.ResetSearch();
-            UpdateTable();
+            buildingManager.SetDisplayList();
+            UpdateTables();
         }
 
         /// <summary>
@@ -267,6 +246,32 @@ namespace Assignment_1
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// Tries to get data from a selected building and display it in the input fields which makes it easy to edit a building
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void localTable_SelectionChanged(object sender, EventArgs e)
+        {
+            if (localTable.SelectedRows.Count == 1) // Are there even a building to get data from
+            {
+                if (localTable.SelectedCells[1].Value != null) // At start up there can be a problem to retrieve data
+                {
+                    try
+                    {
+                        countriesComboBox.SelectedItem = localTable.SelectedCells[1].Value.ToString().Trim();
+                        cityTextBox.Text = localTable.SelectedCells[2].Value.ToString().Trim();
+                        streetTextBox.Text = localTable.SelectedCells[3].Value.ToString().Trim();
+                        zipCodeTextBox.Text = localTable.SelectedCells[4].Value.ToString().Trim();
+                        categoryComboBox.SelectedItem = localTable.SelectedCells[5].Value.ToString().Trim();
+                        typeComboBox.SelectedItem = localTable.SelectedCells[6].Value.ToString().Trim();
+                        legalComboBox.SelectedItem = localTable.SelectedCells[7].Value.ToString().Trim();
+                    }
+                    catch { }
+                }
             }
         }
 
@@ -303,7 +308,7 @@ namespace Assignment_1
         /// <returns></returns>
         private bool SaveOrNot()
         {
-            if (table.RowCount != 0)
+            if (localTable.RowCount != 0)
             {
                 if (savedUpToDate)
                 {
@@ -360,7 +365,7 @@ namespace Assignment_1
             ClearTable();
             filePath = null;
             savedUpToDate = true;
-            buildingManager.ResetSearch();
+            buildingManager.SetDisplayList();
         }
 
         /// <summary>
@@ -377,16 +382,16 @@ namespace Assignment_1
 
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
+                localTable.ClearSelection();
                 filePath = openDialog.FileName;
 
                 try
                 {
 
                     buildingManager.BinaryDeSerialization(filePath);
-                    SQLQuery.DeleteAllBuildings();
                     buildingManager.UpdateDatabase();
-                    buildingManager.ResetSearch();
-                    UpdateTable();
+                    buildingManager.SetDisplayList();
+                    ResetGUI();
                     savedUpToDate = true;
                 }
                 catch (Exception e)
@@ -482,13 +487,13 @@ namespace Assignment_1
         /// </summary>
         private void ClearTable()
         {
-            table.Rows.Clear();
+            localTable.Rows.Clear();
         }
 
         /// <summary>
         /// Updates the GUI that displays objects of buildings
         /// </summary>
-        public void UpdateTable()
+        public void UpdateTables()
         {
             ClearTable();
             List<string> list = buildingManager.GetDisplayList();
@@ -497,11 +502,11 @@ namespace Assignment_1
             {
                 for (int row = 0; row < list.Count; row++)
                 {
-                    table.Rows.Add();
+                    localTable.Rows.Add();
 
-                    for (int col = 0; col < table.ColumnCount; col++)
+                    for (int col = 0; col < localTable.ColumnCount; col++)
                     {
-                        table[col, row].Value = list[row].Split(',').ToArray()[col];
+                        localTable[col, row].Value = list[row].Split(',').ToArray()[col];
                     }
                 }
             }

@@ -76,13 +76,8 @@ namespace Business_Logics_Layer
         }
 
         /// <summary>
-        /// The displayList gets all the building objects
+        /// Tries to add buildings into the local list from the database
         /// </summary>
-        public void ResetSearch()
-        {
-            displayList = ToStringList();
-        }
-
         public void SetDataFromDatabase()
         {
             DataTable dataTable = SQLQuery.RetrieveAllBuildings();
@@ -104,16 +99,23 @@ namespace Business_Logics_Layer
                 }
                 list.Add(building);
             }
-            ResetSearch();
+            SetDisplayList();
         }
 
+        /// <summary>
+        /// Creates a ResidentialBuilding object from a specific row in the datatable which came from the database
+        /// Returns the building object
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <param name="row"></param>
+        /// <returns></returns>
         private Building SetResidentialBuilding(DataTable dataTable, int row)
         {
             var building = (from rw in dataTable.AsEnumerable()
                         where dataTable.Rows.IndexOf(rw).Equals(row)
                         select new ResidentialBuilding()
                         {
-                            BuildingID = (string)(rw["BuildingID"]),
+                            BuildingID = (string)(rw["ID"]),
                             Country = (string)(rw["Country"]),
                             City = (string)(rw["City"]),
                             Street = (string)(rw["Street"]),
@@ -124,13 +126,20 @@ namespace Business_Logics_Layer
             return building;
         }
 
+        /// <summary>
+        /// Creates a CommercialBuilding object from a specific row in the datatable which came from the database
+        /// Returns the building object
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <param name="row"></param>
+        /// <returns></returns>
         private Building SetCommercialBuilding(DataTable dataTable, int row)
         {
             var building = (from rw in dataTable.AsEnumerable()
                         where dataTable.Rows.IndexOf(rw).Equals(row)
                         select new CommercialBuilding()
                         {
-                            BuildingID = (string)(rw["BuildingID"]),
+                            BuildingID = (string)(rw["ID"]),
                             Country = (string) (rw["Country"]),
                             City = (string)(rw["City"]),
                             Street = (string)(rw["Street"]),
@@ -141,12 +150,26 @@ namespace Business_Logics_Layer
             return building;
         }
 
+        /// <summary>
+        /// Removes all buildings from the database 
+        /// Thereafter all the new building objects, that has been loaded from a local file, is added to the database
+        /// </summary>
         public void UpdateDatabase()
         {
+            SQLQuery.DeleteAllBuildings();
+
             foreach (Building building in list)
             {
                 SQLQuery.AddBuilding(building);
             }
+        }
+
+        /// <summary>
+        /// The displayList gets all the building objects
+        /// </summary>
+        public void SetDisplayList()
+        {
+            displayList = ToStringList();
         }
 
         /// <summary>

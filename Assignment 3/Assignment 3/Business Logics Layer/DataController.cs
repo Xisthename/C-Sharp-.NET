@@ -41,18 +41,6 @@ namespace Business_Logics_Layer
         }
 
         /// <summary>
-        /// Tries to insert an object into the building list at a given index place
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="newBuilding"></param>
-        /// <returns></returns>
-        internal bool InsertBuildingAt(int index, Building newBuilding)
-        {
-            newBuilding.BuildingID = buildingManager.GenerateID();
-            return buildingManager.InsertAt(index, newBuilding);
-        }
-
-        /// <summary>
         /// Tries to update a building´s information
         /// </summary>
         /// <param name="buildingID"></param>

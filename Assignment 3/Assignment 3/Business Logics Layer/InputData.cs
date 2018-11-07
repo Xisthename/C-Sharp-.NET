@@ -195,18 +195,6 @@ namespace Business_Logics_Layer
         }
 
         /// <summary>
-        /// Inserts a new building object into the list at a given index place
-        /// </summary>
-        public bool InsertBuilding(int index)
-        {
-            if (controller.InsertBuildingAt(index, tempBuilding))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Edits an existing building object's fields in a list with the given ID to this temporary building object
         /// </summary>
         /// <param name="buildingID"></param>
