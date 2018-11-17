@@ -1,0 +1,11 @@
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\bin\Debug\GameCardLib.dll
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\bin\Debug\GameCardLib.pdb
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\bin\Debug\UtilitiesLib.dll
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\bin\Debug\UtilitiesLib.pdb
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\obj\Debug\GameCardLib.csprojAssemblyReference.cache
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\obj\Debug\GameCardLib.Properties.Resources.resources
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\obj\Debug\GameCardLib.csproj.GenerateResource.cache
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\obj\Debug\GameCardLib.csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\obj\Debug\GameCardLib.csproj.CopyComplete
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\obj\Debug\GameCardLib.dll
+C:\Users\xisth\source\repos\Assignment 2\GameCardLib\obj\Debug\GameCardLib.pdb

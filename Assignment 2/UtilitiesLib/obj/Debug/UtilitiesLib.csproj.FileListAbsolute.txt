@@ -1,0 +1,8 @@
+C:\Users\xisth\source\repos\Assignment 2\UtilitiesLib\bin\Debug\UtilitiesLib.dll
+C:\Users\xisth\source\repos\Assignment 2\UtilitiesLib\bin\Debug\UtilitiesLib.pdb
+C:\Users\xisth\source\repos\Assignment 2\UtilitiesLib\obj\Debug\UtilitiesLib.csprojAssemblyReference.cache
+C:\Users\xisth\source\repos\Assignment 2\UtilitiesLib\obj\Debug\UtilitiesLib.Properties.Resources.resources
+C:\Users\xisth\source\repos\Assignment 2\UtilitiesLib\obj\Debug\UtilitiesLib.csproj.GenerateResource.cache
+C:\Users\xisth\source\repos\Assignment 2\UtilitiesLib\obj\Debug\UtilitiesLib.csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 2\UtilitiesLib\obj\Debug\UtilitiesLib.dll
+C:\Users\xisth\source\repos\Assignment 2\UtilitiesLib\obj\Debug\UtilitiesLib.pdb

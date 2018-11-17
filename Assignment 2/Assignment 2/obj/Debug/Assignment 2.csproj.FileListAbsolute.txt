@@ -1,0 +1,15 @@
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\bin\Debug\Assignment 2.exe.config
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\bin\Debug\Assignment 2.exe
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\bin\Debug\Assignment 2.pdb
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\bin\Debug\GameCardLib.dll
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\bin\Debug\UtilitiesLib.dll
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\bin\Debug\GameCardLib.pdb
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\bin\Debug\UtilitiesLib.pdb
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\obj\Debug\Assignment 2.csprojAssemblyReference.cache
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\obj\Debug\Assignment_2.MainForm.resources
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\obj\Debug\Assignment_2.Properties.Resources.resources
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\obj\Debug\Assignment 2.csproj.GenerateResource.cache
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\obj\Debug\Assignment 2.csproj.CoreCompileInputs.cache
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\obj\Debug\Assignment 2.csproj.CopyComplete
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\obj\Debug\Assignment 2.exe
+C:\Users\xisth\source\repos\Assignment 2\Assignment 2\obj\Debug\Assignment 2.pdb
