@@ -16,8 +16,10 @@ namespace UtilitiesLib
     /// <summary>
     /// Daniel Petersén
     /// 2018-11-08
+    /// 
+    /// The diffrent playing states a player can be in
     /// </summary>
-    public enum PlayingStates { BlackJack, Thick, Playing, Stand }
+    public enum PlayingStates { Playing, BlackJack, Thick, Stand, Won, Lost }
 
     public class PlayingCards
     {
@@ -26,6 +28,7 @@ namespace UtilitiesLib
         /// </summary>
         public static readonly int Count = 52;
         public static readonly int BlackJack = 21;
+        public static readonly int MinStopValueForDealer = 17;
         public static readonly int Width = 100;
         public static readonly int Height = 150;
         private static readonly int[] CardValues = { 1, 11, 13, 12, 8, 9, 2, 3, 4, 5, 6, 7, 10 };
@@ -36,7 +39,7 @@ namespace UtilitiesLib
         /// <returns></returns>
         public static Image GetCardBack()
         {
-            return Properties.Resources.cardback_gray;
+            return Properties.Resources.cardback_red;
         }
 
         /// <summary>

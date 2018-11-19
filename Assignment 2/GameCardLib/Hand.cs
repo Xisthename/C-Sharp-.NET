@@ -63,15 +63,6 @@ namespace GameCardLib
         }
 
         /// <summary>
-        /// Returns the value of the hand as a string
-        /// </summary>
-        /// <returns></returns>
-        public string GetHandValueToString()
-        {
-            return GetHandValue().ToString();
-        }
-
-        /// <summary>
         /// Returns the card images from the hand
         /// </summary>
         /// <returns></returns>

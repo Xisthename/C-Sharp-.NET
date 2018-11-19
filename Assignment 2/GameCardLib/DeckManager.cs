@@ -28,6 +28,10 @@ namespace GameCardLib
         /// <param name="decks"></param>
         public void InitDeck(int decks)
         {
+            DeckPile.Clear();
+            DiscardPile.Clear();
+            cardList.Clear();
+
             for (int countDecks = 0; countDecks < decks; countDecks++)
             {
                 for (int index = 0; index < PlayingCards.Count; index++)

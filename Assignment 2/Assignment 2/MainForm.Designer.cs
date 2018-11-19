@@ -47,10 +47,12 @@
             this.playerLabel = new System.Windows.Forms.Label();
             this.playerHandLabel = new System.Windows.Forms.Label();
             this.scoreTable = new System.Windows.Forms.DataGridView();
-            this.countdownTimer = new System.Windows.Forms.Timer(this.components);
             this.columnCountry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.countdownTimer = new System.Windows.Forms.Timer(this.components);
+            this.displayTimer = new System.Windows.Forms.Timer(this.components);
+            this.cardsLeftLabel = new System.Windows.Forms.Label();
             this.dealerBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.decksNumericUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -263,11 +265,6 @@
             this.scoreTable.Size = new System.Drawing.Size(348, 450);
             this.scoreTable.TabIndex = 18;
             // 
-            // countdownTimer
-            // 
-            this.countdownTimer.Interval = 500;
-            this.countdownTimer.Tick += new System.EventHandler(this.countdownTimer_Tick);
-            // 
             // columnCountry
             // 
             this.columnCountry.FillWeight = 75F;
@@ -301,12 +298,32 @@
             this.ColumnCity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ColumnCity.Width = 125;
             // 
+            // countdownTimer
+            // 
+            this.countdownTimer.Interval = 750;
+            this.countdownTimer.Tick += new System.EventHandler(this.countdownTimer_Tick);
+            // 
+            // displayTimer
+            // 
+            this.displayTimer.Interval = 1000;
+            this.displayTimer.Tick += new System.EventHandler(this.displayTimer_Tick);
+            // 
+            // cardsLeftLabel
+            // 
+            this.cardsLeftLabel.AutoSize = true;
+            this.cardsLeftLabel.Location = new System.Drawing.Point(1232, 256);
+            this.cardsLeftLabel.Name = "cardsLeftLabel";
+            this.cardsLeftLabel.Size = new System.Drawing.Size(123, 17);
+            this.cardsLeftLabel.TabIndex = 2;
+            this.cardsLeftLabel.Text = "Cards left in Deck:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1769, 481);
+            this.Controls.Add(this.cardsLeftLabel);
             this.Controls.Add(this.scoreTable);
             this.Controls.Add(this.endGameButton);
             this.Controls.Add(this.groupBox1);
@@ -332,6 +349,7 @@
             this.playerBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scoreTable)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -356,6 +374,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columnCountry;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCity;
+        private System.Windows.Forms.Timer displayTimer;
+        private System.Windows.Forms.Label cardsLeftLabel;
     }
 }
 

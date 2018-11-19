@@ -24,7 +24,7 @@ namespace GameCardLib
         public bool FaceUp { get; set; } = false;
 
         /// <summary>
-        /// Constructor who enters the value of the card and a correct image to that value
+        /// Constructor that takes in the value of the card and a correct image to that value
         /// </summary>
         /// <param name="value"></param>
         /// <param name="image"></param>

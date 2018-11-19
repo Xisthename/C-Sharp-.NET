@@ -15,7 +15,7 @@ namespace GameCardLib
         /// <summary>
         /// Delecering necessary variable
         /// </summary>
-        private string name;
+        public string Name { get; set; }
 
         /// <summary>
         /// Constructor that taks in a string and stores it in the instance variable name
@@ -23,16 +23,7 @@ namespace GameCardLib
         /// <param name="name"></param>
         public Player(string name)
         {
-            this.name = name;
-        }
-
-        /// <summary>
-        /// Returns the player's name
-        /// </summary>
-        /// <returns></returns>
-        public string GetName()
-        {
-            return name;
+            Name = name;
         }
     }
 }

@@ -37,8 +37,10 @@ namespace Assignment_2
         {
             gameHandler.PaintCards += new GameHandler.PaintCardHandler(PaintCards);
             gameHandler.StartTimer += new GameHandler.CountDownTimer(StartTimer);
+            gameHandler.CardDisplayTime += new GameHandler.DisplayTimer(CardDisplayTime);
             gameHandler.UpdateText += new GameHandler.UpdateTextUI(UpdateText);
             gameHandler.UpdateScore += new GameHandler.UpdateScoreList(UpdateScore);
+            gameHandler.UpdateFinalScore += new GameHandler.FinalScores(UpdateFinalScore);
             InitGUI();
         }
 
@@ -71,8 +73,9 @@ namespace Assignment_2
         /// <param name="e"></param>
         private void startGameButton_Click(object sender, EventArgs e)
         {
-            EnableButtons(true);
-            gameHandler.InitPlayersAndDeck((int) playersNumericUpDown.Value, (int) decksNumericUpDown.Value);
+            startGameButton.Enabled = false;
+            endGameButton.Enabled = true;
+            gameHandler.InitPlayersAndDeck((int)playersNumericUpDown.Value, (int)decksNumericUpDown.Value);
             gameHandler.PlayerHit(); // The player always starts out with a card in their hand
         }
 
@@ -113,8 +116,18 @@ namespace Assignment_2
         /// <param name="e"></param>
         private void endGameButton_Click(object sender, EventArgs e)
         {
+            countdownTimer.Stop();
+            displayTimer.Stop();
             EnableButtons(false);
+            cardsLeftLabel.Text = "Cards left in Deck:";
+            dealerHandLabel.Text = "Hand Value: ";
+            playerHandLabel.Text = dealerHandLabel.Text;
+            playerLabel.Text = "Player";
+            dealerImages.Clear();
+            playerImages.Clear();
             scoreTable.Rows.Clear();
+            dealerBox.Invalidate();
+            playerBox.Invalidate();
         }
 
         /// <summary>
@@ -204,14 +217,15 @@ namespace Assignment_2
         }
 
         /// <summary>
-        /// When the UpdateText event has been raised from the GameHandler class the playerName, 
+        /// When the UpdateText event has been raised from the GameHandler class the cards left, the playerName, 
         /// hand value of the dealer and the player are displayed to the user
         /// </summary>
         /// <param name="playerName"></param>
         /// <param name="playerHandValue"></param>
         /// <param name="dealerHandValue"></param>
-        private void UpdateText(string playerName, string playerHandValue, string dealerHandValue)
+        private void UpdateText(int cardsLeft, string playerName, int playerHandValue, int dealerHandValue)
         {
+            cardsLeftLabel.Text = "Cards left in Deck: " + cardsLeft;
             playerLabel.Text = playerName;
             playerHandLabel.Text = "Hand Value: " + playerHandValue;
             dealerHandLabel.Text = "Hand Value: " + dealerHandValue;
@@ -224,9 +238,36 @@ namespace Assignment_2
         /// <param name="playerName"></param>
         /// <param name="playerHandValue"></param>
         /// <param name="playerState"></param>
-        private void UpdateScore(string playerName, string playerHandValue, string playerState)
+        private void UpdateScore(string playerName, int playerHandValue, string playerState)
         {
-            scoreTable.Rows.Add(playerName, playerHandValue, playerState);
+            bool found = false;
+
+            for (int i = 0; i < scoreTable.Rows.Count; i++)
+            {
+                if (scoreTable.Rows[i].Cells[0].Value.Equals(playerName))
+                {
+                    scoreTable.Rows.RemoveAt(i);
+                    scoreTable.Rows.Insert(i, playerName, playerHandValue, playerState);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                scoreTable.Rows.Add(playerName, playerHandValue, playerState);
+            }
+        }
+
+        /// <summary>
+        /// Adds the dealers details into the scoreTable
+        /// </summary>
+        /// <param name="dealerName"></param>
+        /// <param name="dealerHandValue"></param>
+        /// <param name="dealerResult"></param>
+        private void UpdateFinalScore(string dealerName, int dealerHandValue, string dealerResult)
+        {
+            scoreTable.Rows.Insert(0, dealerName, dealerHandValue, dealerResult);
         }
 
         /// <summary>
@@ -252,13 +293,44 @@ namespace Assignment_2
         {
             countdownTimer.Stop();
 
-            if (gameHandler.PlayerIsPlaying)
+            if (gameHandler.PlayerIsPlaying && gameHandler.GetPlayerState() == PlayingStates.Playing)
             {
                 hitButton.Enabled = true;
                 standButton.Enabled = true;
                 shuffleButton.Enabled = true;
             }
-            gameHandler.FaceLastCardUp();
+            gameHandler.FlipLastCardUp();
+        }
+
+        /// <summary>
+        /// When the CardDisplayTime event has been raised from the GameHandler class a timer is started
+        /// </summary>
+        private void CardDisplayTime()
+        {
+            displayTimer.Start();
+        }
+
+        /// <summary>
+        /// When the displayTimer_Tick is raised the timer is stopped
+        /// Then either CheckIfDealersTurn or CheckIfGameIsOver is called upon
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void displayTimer_Tick(object sender, EventArgs e)
+        {
+            displayTimer.Stop();
+
+            if (gameHandler.PlayerIsPlaying)
+            {
+                if (gameHandler.GetPlayerState() == PlayingStates.BlackJack || gameHandler.GetPlayerState() == PlayingStates.Thick)
+                {
+                    gameHandler.CheckIfDealersTurn();
+                }
+            }
+            else
+            {
+                gameHandler.CheckIfGameIsOver();
+            }
         }
     }
 }

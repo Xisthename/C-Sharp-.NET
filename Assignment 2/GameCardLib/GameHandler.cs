@@ -15,28 +15,51 @@ namespace GameCardLib
     /// </summary>
     public class GameHandler
     {
+        /// <summary>
+        /// Delecering necessary delegates and events
+        /// </summary>
+        /// <param name="dealerImages"></param>
+        /// <param name="playerImages"></param>
         public delegate void PaintCardHandler(List<Image> dealerImages, List<Image> playerImages);
         public event PaintCardHandler PaintCards;
 
         public delegate void CountDownTimer();
         public event CountDownTimer StartTimer;
 
-        public delegate void UpdateTextUI(string playerName, string playerHandValue, string dealerHandValue);
+        public delegate void DisplayTimer();
+        public event DisplayTimer CardDisplayTime;
+
+        public delegate void UpdateTextUI(int cardsLeft, string playerName, int playerHandValue, int dealerHandValue);
         public event UpdateTextUI UpdateText;
 
-        public delegate void UpdateScoreList(string playerName, string playerHandValue, string playerStatus);
+        public delegate void UpdateScoreList(string playerName, int playerHandValue, string playerState);
         public event UpdateScoreList UpdateScore;
 
+        public delegate void FinalScores(string dealerName, int dealerHandValue, string dealerResult);
+        public event FinalScores UpdateFinalScore;
 
+        /// <summary>
+        /// Delecering necessary variables
+        /// </summary>
         private Dealer dealer;
         private List<Player> playerList = new List<Player>();
         private DeckManager deckManager = new DeckManager();
         private int currentPlayer;
+        private int dealerLosses;
+        private int dealerWins;
         public bool PlayerIsPlaying { get; set; }
 
+        /// <summary>
+        /// Constructor that takes in how many players and decks that will be used
+        /// The players are created, so is the deck and a deler is created aswell
+        /// </summary>
+        /// <param name="players"></param>
+        /// <param name="decks"></param>
         public void InitPlayersAndDeck(int players, int decks)
         {
             currentPlayer = 0;
+            dealerLosses = 0;
+            dealerWins = 0;
             PlayerIsPlaying = true;
             playerList.Clear();
 
@@ -46,14 +69,20 @@ namespace GameCardLib
             }
             deckManager.InitDeck(decks);
             deckManager.ShuffleDeck();
-            dealer = new Dealer();
+            dealer = new Dealer("Dealer");
         }
 
+        /// <summary>
+        /// Shuffles the remaining cards in the deck
+        /// </summary>
         public void ShuffleDeck()
         {
             deckManager.ShuffleDeck();
         }
 
+        /// <summary>
+        /// The current player ask and receives another card to their hand 
+        /// </summary>
         public void PlayerHit()
         {
             playerList[currentPlayer].AddCardToHand(deckManager.DrawNextCard());
@@ -61,16 +90,21 @@ namespace GameCardLib
             StartTimer();
         }
 
+        /// <summary>
+        /// The current player wish to stay at the current hand value
+        /// </summary>
         public void PlayerStand()
         {
             playerList[currentPlayer].PlayingState = PlayingStates.Stand;
+            UpdateScore(GetPlayerName(), GetPlayerHandValue(), GetPlayerState().ToString());
             CheckIfDealersTurn();
         }
 
+        /// <summary>
+        /// Checks if a new player should start playing or it's the dealers turn to play
+        /// </summary>
         public void CheckIfDealersTurn()
         {
-            UpdateScore(GetPlayerName(), GetPlayerHandValueToString(), GetPlayerState().ToString());
-
             if (currentPlayer + 1 != playerList.Count)
             {
                 currentPlayer++;
@@ -83,14 +117,23 @@ namespace GameCardLib
             }
         }
 
-        public void DealerPlays()
+        /// <summary>
+        /// The dealer adds a card to it's hand
+        /// </summary>
+        private void DealerPlays()
         {
             dealer.AddCardToHand(deckManager.DrawNextCard());
+            PaintCards(GetDealerImages(), GetPlayerImages());
             StartTimer();
         }
 
-        public void FaceLastCardUp()
+        /// <summary>
+        /// The last card in a players or dealers hand is flipped up
+        /// </summary>
+        public void FlipLastCardUp()
         {
+            UpdateText(deckManager.Count, playerList[currentPlayer].Name, playerList[currentPlayer].GetHandValue(), dealer.GetHandValue());
+
             if (PlayerIsPlaying)
             {
                 playerList[currentPlayer].FaceUpLastCard();
@@ -98,36 +141,93 @@ namespace GameCardLib
 
                 if (GetPlayerState() == PlayingStates.BlackJack || GetPlayerState() == PlayingStates.Thick)
                 {
-                    CheckIfDealersTurn();
+                    UpdateScore(GetPlayerName(), GetPlayerHandValue(), GetPlayerState().ToString());
+                    CardDisplayTime();
                 }
             }
             else
             {
-                dealer.FaceUpLastCard(); // TODO add simple AI logic here
+                dealer.FaceUpLastCard();
                 PaintCards(GetDealerImages(), GetPlayerImages());
+                CardDisplayTime();
             }
-            UpdateText(playerList[currentPlayer].GetName(), playerList[currentPlayer].GetHandValueToString(), dealer.GetHandValueToString());
         }
 
+        /// <summary>
+        /// Checks if the dealer is done and then sums up the whole turn to the user in a list
+        /// </summary>
+        public void CheckIfGameIsOver()
+        {
+            if (dealer.GetHandValue() < PlayingCards.MinStopValueForDealer)
+            {
+                DealerPlays();
+            }
+            else
+            {
+                for (int i = 0; i < playerList.Count; i++)
+                {
+                    Player player = playerList[i];
+
+                    if (player.PlayingState == PlayingStates.Thick)
+                    {
+                        player.PlayingState = PlayingStates.Lost;
+                    }
+                    else if (player.PlayingState == PlayingStates.BlackJack || dealer.PlayingState == PlayingStates.Thick || player.GetHandValue() > dealer.GetHandValue())
+                    {
+                        dealerLosses++;
+                        player.PlayingState = PlayingStates.Won;
+                    }
+                    else
+                    {
+                        player.PlayingState = PlayingStates.Lost;
+                    }
+                    UpdateScore(player.Name, player.GetHandValue(), player.PlayingState.ToString());
+                }
+                dealerWins = playerList.Count - dealerLosses;
+                UpdateFinalScore(dealer.Name, dealer.GetHandValue(), "Wins: " + dealerWins + " & Losses: " + dealerLosses);
+            }
+        }
+
+        /// <summary>
+        /// Returns the current players images
+        /// </summary>
+        /// <returns></returns>
         private List<Image> GetPlayerImages()
         {
             return playerList[currentPlayer].GetImages();
         }
 
-        private string GetPlayerHandValueToString()
+        /// <summary>
+        /// Returns the current players hand value
+        /// </summary>
+        /// <returns></returns>
+        private int GetPlayerHandValue()
         {
-            return playerList[currentPlayer].GetHandValueToString();
+            return playerList[currentPlayer].GetHandValue();
         }
 
+        /// <summary>
+        /// Returns the current players name
+        /// </summary>
+        /// <returns></returns>
         private string GetPlayerName()
         {
-            return playerList[currentPlayer].GetName();
+            return playerList[currentPlayer].Name;
         }
-        private PlayingStates GetPlayerState()
+
+        /// <summary>
+        /// Returns the current players playing state
+        /// </summary>
+        /// <returns></returns>
+        public PlayingStates GetPlayerState()
         {
             return playerList[currentPlayer].PlayingState;
         }
 
+        /// <summary>
+        /// Returns the dealers images
+        /// </summary>
+        /// <returns></returns>
         private List<Image> GetDealerImages()
         {
             return dealer.GetImages();
